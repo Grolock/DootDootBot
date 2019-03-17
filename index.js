@@ -1,3 +1,4 @@
+require('dotenv').config()
 // Load up the discord.js library
 const Discord = require("discord.js");
 
@@ -31,6 +32,8 @@ client.on("guildDelete", guild => {
   client.user.setActivity(`Serving ${client.guilds.size} servers`);
 });
 
+var BaconMode = false;
+var JoshMode = false;
 
 client.on("message", async message => {
   // This event will run on every single message received, from any channel or DM.
@@ -53,6 +56,83 @@ client.on("message", async message => {
 
     return message.channel.send(`${dootMoji}${dootMoji}${dootMoji}`);
   };
+
+  if(message.content.includes('DemoMode toggle') && message.author.id == 230124931461939200) {
+    JoshMode = !JoshMode;
+
+    if(JoshMode) {
+      return message.channel.send("DootDootBot has entered Demo Mode")
+    }
+    else {
+      return message.channel.send("DootDootBot has disabled Demo Mode")
+    }
+  }
+
+  if(message.content.includes('BaconMode toggle') && message.author.id == 230124931461939200) {
+    BaconMode = !BaconMode;
+
+    if(BaconMode) {
+      return message.channel.send("DootDootBot has initiated Bacon Mode. Watch what you post!")
+    }
+    else {
+      return message.channel.send("DootDootBot has disabled Bacon Mode. You may now post recklessly!")
+    }
+
+  }
+
 });
 
-client.login(config.token);
+
+client.on("messageDelete", (message) => {
+
+  if(BaconMode) {
+    if(message.author.id == 147453766910607369 || message.author.id == 290193372688154624) {
+
+      console.log(message)
+
+      let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
+      files = [];
+
+      if(message.attachments) {
+        message.attachments.forEach((attachment) => {
+          files.push(attachment.proxyURL);
+        });
+      }
+
+      message.author.send
+
+      message.channel.send(`${message.author.username} tried to delete: ${message.content}`);
+      return message.channel.send(files);
+    }
+  }
+  if(JoshMode) {
+    if(message.author.id == 230124931461939200) {
+
+      console.log(message)
+
+      let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
+      files = [];
+
+      if(message.attachments) {
+        message.attachments.forEach((attachment) => {
+          files.push(attachment.proxyURL);
+        });
+      }
+
+      message.author.send
+
+      message.channel.send(`${message.author.username} tried to delete: ${message.content}`);
+      return message.channel.send(files);
+    }
+  }
+
+});
+
+if (process.env.token) {
+  client.login(process.env.token);
+}
+else {
+  client.login(config.token)
+}
+
+require('http').createServer().listen(3000)
