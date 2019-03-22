@@ -90,9 +90,14 @@ client.on("message", async message => {
     }
 
     var mentions = message.mentions;
-    console.dir(mentions);
 
+    if(message.content.include('doot doot attack')) {
+      specialTarget = mentions[0].id
+    }
 
+    if(message.content.include('doot doot stop')) {
+      specialTarget = ""
+    }
   }
 
 });
@@ -102,46 +107,36 @@ client.on("messageDelete", (message) => {
 
   if(BaconMode) {
     if(message.author.id == 147453766910607369 || message.author.id == 290193372688154624) {
-
-      console.log(message)
-
-      let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
-      files = [];
-
-      if(message.attachments) {
-        message.attachments.forEach((attachment) => {
-          files.push(attachment.proxyURL);
-        });
-      }
-
-      message.author.send
-
-      message.channel.send(`${message.author.username} tried to delete: ${message.content}`);
-      return message.channel.send(files);
+      return watchDelete(message);
     }
   }
   if(JoshMode) {
     if(message.author.id == 230124931461939200) {
-
-      console.log(message)
-
-      let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
-      files = [];
-
-      if(message.attachments) {
-        message.attachments.forEach((attachment) => {
-          files.push(attachment.proxyURL);
-        });
-      }
-
-      message.author.send
-
-      message.channel.send(`${message.author.username} tried to delete: ${message.content}`);
-      return message.channel.send(files);
+      return watchDelete(message);
+    }
+  }
+  if(specialTarget != "") {
+    if(message.author.id == specialTarget) {
+      return watchDelete(message);
     }
   }
 
 });
+
+function watchDelete(message) {
+  files = [];
+
+  if(message.attachments) {
+    message.attachments.forEach((attachment) => {
+      files.push(attachment.proxyURL);
+    });
+  }
+
+  message.author.send
+
+  message.channel.send(`${message.author.username} tried to delete: ${message.content}`);
+  return message.channel.send(files);
+}
 
 if (process.env.token) {
   client.login(process.env.token);
