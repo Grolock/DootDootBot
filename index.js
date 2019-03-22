@@ -40,7 +40,12 @@ client.on("message", async message => {
   // and not get into a spam loop (we call that "botception").
   if(message.author.bot) return;
 
-  if(message.content.includes(' doot') || message.content.includes('doot ') || message.content.includes(' doot ') || message.content === ('doot'))
+  if(message.content.includes(' doot') || message.content.includes('doot ') || message.content.includes(' doot ') || message.content === ('doot') ||
+     message.content.includes(' Doot') || message.content.includes('Doot ') || message.content.includes(' Doot ') || message.content === ('Doot')) {
+       let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
+
+       return message.channel.send(`${dootMoji}${dootMoji}`);
+     }
 
   if(message.content.includes('@here')) {
 
