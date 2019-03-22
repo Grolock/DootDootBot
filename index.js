@@ -40,6 +40,46 @@ client.on("message", async message => {
   // and not get into a spam loop (we call that "botception").
   if(message.author.bot) return;
 
+
+    if(message.author.id == 230124931461939200) {
+
+      if(message.content.includes('DemoMode toggle')) {
+        JoshMode = !JoshMode;
+
+        if(JoshMode) {
+          return message.channel.send("DootDootBot has entered Demo Mode")
+          client.user.setActivity(`Running DemoMode`);
+        }
+        else {
+          return message.channel.send("DootDootBot has disabled Demo Mode")
+          client.user.setActivity(`Ready to Doot`);
+        }
+      }
+
+      if(message.content.includes('BaconMode toggle')) {
+        BaconMode = !BaconMode;
+
+        if(BaconMode) {
+          return message.channel.send("DootDootBot has initiated Bacon Mode. Watch what you post!")
+          client.user.setActivity(`Terrorizing Bacon`);
+        }
+        else {
+          return message.channel.send("DootDootBot has disabled Bacon Mode. You may now post recklessly!")
+          client.user.setActivity(`Ready to Doot`);
+        }
+      }
+
+      var mentions = message.mentions;
+
+      if(message.content.include('doot doot attack')) {
+        specialTarget = mentions[0].id
+      }
+
+      if(message.content.include('doot doot stop')) {
+        specialTarget = ""
+      }
+    }
+
   if(message.content.includes(' doot') || message.content.includes('doot ') || message.content.includes(' doot ') || message.content === ('doot') ||
      message.content.includes(' Doot') || message.content.includes('Doot ') || message.content.includes(' Doot ') || message.content === ('Doot')) {
        let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
@@ -60,45 +100,6 @@ client.on("message", async message => {
 
     return message.channel.send(`${dootMoji}${dootMoji}${dootMoji}`);
   };
-
-  if(message.author.id == 230124931461939200) {
-
-    if(message.content.includes('DemoMode toggle')) {
-      JoshMode = !JoshMode;
-
-      if(JoshMode) {
-        return message.channel.send("DootDootBot has entered Demo Mode")
-        client.user.setActivity(`Running DemoMode`);
-      }
-      else {
-        return message.channel.send("DootDootBot has disabled Demo Mode")
-        client.user.setActivity(`Ready to Doot`);
-      }
-    }
-
-    if(message.content.includes('BaconMode toggle')) {
-      BaconMode = !BaconMode;
-
-      if(BaconMode) {
-        return message.channel.send("DootDootBot has initiated Bacon Mode. Watch what you post!")
-        client.user.setActivity(`Terrorizing Bacon`);
-      }
-      else {
-        return message.channel.send("DootDootBot has disabled Bacon Mode. You may now post recklessly!")
-        client.user.setActivity(`Ready to Doot`);
-      }
-    }
-
-    var mentions = message.mentions;
-
-    if(message.content.include('doot doot attack')) {
-      specialTarget = mentions[0].id
-    }
-
-    if(message.content.include('doot doot stop')) {
-      specialTarget = ""
-    }
-  }
 
 });
 
