@@ -74,7 +74,7 @@ client.on("message", async message => {
       if(message.content.includes('doot doot attack')) {
         console.log(mentions)
         console.log(mentions["users"])
-        specialTarget = mentions["users"].values().next()
+        specialTarget = mentions["users"].values().next()['value'].id
         console.log(specialTarget)
       }
 
