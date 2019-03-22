@@ -44,7 +44,7 @@ client.on("message", async message => {
      message.content.includes(' Doot') || message.content.includes('Doot ') || message.content.includes(' Doot ') || message.content === ('Doot')) {
        let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
 
-       return message.channel.react(dootMoji);
+       return message.react(`${dootMoji}`);
      }
 
   if(message.content.includes('@here')) {
