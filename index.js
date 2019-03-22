@@ -44,7 +44,7 @@ client.on("message", async message => {
      message.content.includes(' Doot') || message.content.includes('Doot ') || message.content.includes(' Doot ') || message.content === ('Doot')) {
        let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
 
-       return message.channel.send(`${dootMoji}`);
+       return message.channel.react(`${dootMoji}`);
      }
 
   if(message.content.includes('@here')) {
@@ -61,30 +61,37 @@ client.on("message", async message => {
     return message.channel.send(`${dootMoji}${dootMoji}${dootMoji}`);
   };
 
-  if(message.content.includes('DemoMode toggle') && message.author.id == 230124931461939200) {
-    JoshMode = !JoshMode;
+  if(message.author.id == 230124931461939200) {
 
-    if(JoshMode) {
-      return message.channel.send("DootDootBot has entered Demo Mode")
-      client.user.setActivity(`Running DemoMode`);
-    }
-    else {
-      return message.channel.send("DootDootBot has disabled Demo Mode")
-      client.user.setActivity(`Ready to Doot`);
-    }
-  }
+    if(message.content.includes('DemoMode toggle')) {
+      JoshMode = !JoshMode;
 
-  if(message.content.includes('BaconMode toggle') && message.author.id == 230124931461939200) {
-    BaconMode = !BaconMode;
+      if(JoshMode) {
+        return message.channel.send("DootDootBot has entered Demo Mode")
+        client.user.setActivity(`Running DemoMode`);
+      }
+      else {
+        return message.channel.send("DootDootBot has disabled Demo Mode")
+        client.user.setActivity(`Ready to Doot`);
+      }
+    }
 
-    if(BaconMode) {
-      return message.channel.send("DootDootBot has initiated Bacon Mode. Watch what you post!")
-      client.user.setActivity(`Terrorizing Bacon`);
+    if(message.content.includes('BaconMode toggle')) {
+      BaconMode = !BaconMode;
+
+      if(BaconMode) {
+        return message.channel.send("DootDootBot has initiated Bacon Mode. Watch what you post!")
+        client.user.setActivity(`Terrorizing Bacon`);
+      }
+      else {
+        return message.channel.send("DootDootBot has disabled Bacon Mode. You may now post recklessly!")
+        client.user.setActivity(`Ready to Doot`);
+      }
     }
-    else {
-      return message.channel.send("DootDootBot has disabled Bacon Mode. You may now post recklessly!")
-      client.user.setActivity(`Ready to Doot`);
-    }
+
+    var mentions = message.mentions;
+    console.dir(mentions);
+
 
   }
 
