@@ -40,6 +40,7 @@ client.on("message", async message => {
   // and not get into a spam loop (we call that "botception").
   if(message.author.bot) return;
 
+  if(message.content.includes(' doot') || message.content.includes('doot ') || message.content.includes(' doot ') || message.content === ('doot'))
 
   if(message.content.includes('@here')) {
 
