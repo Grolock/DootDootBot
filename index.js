@@ -71,12 +71,12 @@ client.on("message", async message => {
 
       var mentions = message.mentions;
 
-      if(message.content.include('doot doot attack')) {
+      if(message.content.includes('doot doot attack')) {
         specialTarget = mentions[0].id
         console.log(specialTarget)
       }
 
-      if(message.content.include('doot doot stop')) {
+      if(message.content.includes('doot doot stop')) {
         specialTarget = ""
       }
     }
