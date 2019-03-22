@@ -73,7 +73,8 @@ client.on("message", async message => {
 
       if(message.content.includes('doot doot attack')) {
         console.log(mentions)
-        specialTarget = mentions[0].id
+        specialTarget = mentions["users"][0].id
+        console.log(specialTarget)
       }
 
       if(message.content.includes('doot doot stop')) {
