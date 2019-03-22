@@ -17,19 +17,17 @@ client.on("ready", () => {
   console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
   // Example of changing the bot's playing game to something useful. `client.user` is what the
   // docs refer to as the "ClientUser".
-  client.user.setActivity(`Serving ${client.guilds.size} servers`);
+  client.user.setActivity(`Ready to Doot`);
 });
 
 client.on("guildCreate", guild => {
   // This event triggers when the bot joins a guild.
   console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-  client.user.setActivity(`Serving ${client.guilds.size} servers`);
 });
 
 client.on("guildDelete", guild => {
   // this event triggers when the bot is removed from a guild.
   console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
-  client.user.setActivity(`Serving ${client.guilds.size} servers`);
 });
 
 var BaconMode = false;
@@ -62,9 +60,11 @@ client.on("message", async message => {
 
     if(JoshMode) {
       return message.channel.send("DootDootBot has entered Demo Mode")
+      client.user.setActivity(`Running DemoMode`);
     }
     else {
       return message.channel.send("DootDootBot has disabled Demo Mode")
+      client.user.setActivity(`Ready to Doot`);
     }
   }
 
@@ -73,9 +73,11 @@ client.on("message", async message => {
 
     if(BaconMode) {
       return message.channel.send("DootDootBot has initiated Bacon Mode. Watch what you post!")
+      client.user.setActivity(`Terrorizing Bacon`);
     }
     else {
       return message.channel.send("DootDootBot has disabled Bacon Mode. You may now post recklessly!")
+      client.user.setActivity(`Ready to Doot`);
     }
 
   }
