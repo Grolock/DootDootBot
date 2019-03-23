@@ -32,6 +32,7 @@ client.on("guildDelete", guild => {
 
 var BaconMode = false;
 var JoshMode = false;
+var specialTarget = "";
 
 client.on("message", async message => {
   // This event will run on every single message received, from any channel or DM.
