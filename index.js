@@ -106,6 +106,10 @@ client.on("message", async message => {
 
 });
 
+client.on("messageUpdated", (message) => {
+  console.log(message)
+})
+
 
 client.on("messageDelete", (message) => {
 
