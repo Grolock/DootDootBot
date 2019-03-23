@@ -131,6 +131,8 @@ function watchDelete(message) {
   files = [];
 
   if(message.attachments) {
+    console.log(message.attachments)
+
     message.attachments.forEach((attachment) => {
       files.push(attachment.proxyURL);
     });
