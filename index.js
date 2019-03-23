@@ -108,6 +108,9 @@ client.on("message", async message => {
 
 client.on("messageUpdate", (message) => {
   console.log(message)
+
+  return message.channel.send(`${message.content}`)
+
 })
 
 
