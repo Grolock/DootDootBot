@@ -109,17 +109,17 @@ client.on("message", async message => {
 client.on("messageUpdate", (message) => {
   if(BaconMode) {
     if(message.author.id == 147453766910607369 || message.author.id == 290193372688154624) {
-      return message.channel.send(`${message.author.username} tried to delete: ${message.content}`)
+      return message.channel.send(`${message.author.username} tried to edit: ${message.content}`)
     }
   }
   if(JoshMode) {
     if(message.author.id == 230124931461939200) {
-      return message.channel.send(`${message.author.username} tried to delete: ${message.content}`)
+      return message.channel.send(`${message.author.username} tried to edit: ${message.content}`)
     }
   }
   if(specialTarget != "") {
     if(message.author.id == specialTarget) {
-      return message.channel.send(`${message.author.username} tried to delete: ${message.content}`)
+      return message.channel.send(`${message.author.username} tried to edit: ${message.content}`)
     }
   }
 })
