@@ -41,7 +41,6 @@ client.on("message", async message => {
   // and not get into a spam loop (we call that "botception").
   if(message.author.bot) return;
 
-
     if(message.author.id == 230124931461939200) {
 
       if(message.content.includes('DemoMode toggle')) {
@@ -107,7 +106,7 @@ client.on("message", async message => {
 
 });
 
-client.on("messageUpdated", (message) => {
+client.on("messageUpdate", (message) => {
   console.log(message)
 })
 
