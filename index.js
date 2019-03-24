@@ -174,5 +174,3 @@ if (process.env.token) {
 else {
   client.login(config.token)
 }
-
-require('http').createServer().listen(3000)
