@@ -43,6 +43,15 @@ client.on("message", async message => {
 
     if(message.author.id == 230124931461939200) {
 
+      if(message.content.includes('doot doot dingdance') {
+        var channel = message.channel
+        message.delete()
+
+        let dingdance = client.emojis.find(emoji => emoji.name ==='DingDance');
+
+        channel.send(`${dingdance}`)
+      })
+
       if(message.content.includes('DemoMode toggle')) {
         JoshMode = !JoshMode;
 
