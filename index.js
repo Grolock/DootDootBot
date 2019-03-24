@@ -50,7 +50,7 @@ client.on("message", async message => {
         let dingdance = client.emojis.find(emoji => emoji.name ==='DingDance');
 
         return channel.send(`${dingdance}`)
-      })
+      }
 
       if(message.content.includes('DemoMode toggle')) {
         JoshMode = !JoshMode;
