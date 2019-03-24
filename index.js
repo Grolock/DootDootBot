@@ -48,11 +48,11 @@ client.on("message", async message => {
 
         if(JoshMode) {
           return message.channel.send("DootDootBot has entered Demo Mode")
-          client.user.setActivity(`Running DemoMode`);
+          client.user.setActivity('Running DemoMode')
         }
         else {
           return message.channel.send("DootDootBot has disabled Demo Mode")
-          client.user.setActivity(`Ready to Doot`);
+          client.user.setActivity('Ready to Doot')
         }
       }
 
@@ -61,11 +61,11 @@ client.on("message", async message => {
 
         if(BaconMode) {
           return message.channel.send("DootDootBot has initiated Bacon Mode. Watch what you post!")
-          client.user.setActivity(`Terrorizing Bacon`);
+          client.user.setActivity('Terrorizing Bacon')
         }
         else {
           return message.channel.send("DootDootBot has disabled Bacon Mode. You may now post recklessly!")
-          client.user.setActivity(`Ready to Doot`);
+          client.user.setActivity('Ready to Doot')
         }
       }
 
@@ -83,8 +83,7 @@ client.on("message", async message => {
       }
     }
 
-  if(message.content.includes(' doot') || message.content.includes('doot ') || message.content.includes(' doot ') || message.content === ('doot') ||
-     message.content.includes(' Doot') || message.content.includes('Doot ') || message.content.includes(' Doot ') || message.content === ('Doot')) {
+  if(message.content.toUpperCase().includes('doot')) {
        let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
 
        return message.react(dootMoji);
