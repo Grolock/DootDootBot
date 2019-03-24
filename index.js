@@ -83,7 +83,7 @@ client.on("message", async message => {
       }
     }
 
-  if(message.content.toUpperCase().includes('doot')) {
+  if(message.content.toUpperCase().includes('DOOT')) {
        let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
 
        return message.react(dootMoji);
