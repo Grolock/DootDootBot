@@ -30,7 +30,7 @@ client.on("guildDelete", guild => {
   console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
 });
 
-var BaconMode = false;
+var BaconMode = true;
 var JoshMode = false;
 var specialTarget = "";
 
