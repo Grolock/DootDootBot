@@ -136,8 +136,8 @@ client.on("messageUpdate", (message) => {
 client.on("messageDelete", (message) => {
 
   if(BaconMode) {
+    console.log(message)
     if(message.author.id == 147453766910607369 || message.author.id == 290193372688154624) {
-      console.log(message)
       return watchDelete(message);
     }
   }
