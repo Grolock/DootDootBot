@@ -129,7 +129,14 @@ client.on("messageUpdate", (message) => {
   }
   if(JoshMode) {
     if(message.author.id == 230124931461939200) {
-      return message.channel.send(`${message.author.username} tried to edit: ${message.content}` + '. Fuck you too Bacon')
+      var fuckYou = ''
+      var lowerMessage = message.author.lastMessage.content.toLower()
+
+      if (lowerMessage.includes('fuck you bot')) {
+        fuckYou = '. Fuck you too Bacon'
+      }
+
+      return message.channel.send(`${message.author.username} tried to edit: ${message.content}` + fuckYou)
     }
   }
   if(specialTarget != "") {
