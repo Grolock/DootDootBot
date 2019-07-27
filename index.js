@@ -115,7 +115,7 @@ client.on("message", async message => {
 });
 
 client.on("messageUpdate", (message) => {
-  console.log(message)
+  console.log(message.author.lastMessage.content)
   if(BaconMode) {
     if(message.author.id == 147453766910607369 || message.author.id == 290193372688154624) {
       return message.channel.send(`${message.author.username} tried to edit: ${message.content}`)
