@@ -118,7 +118,7 @@ client.on("messageUpdate", (message) => {
   if(BaconMode) {
     if(message.author.id == 147453766910607369 || message.author.id == 290193372688154624) {
       var fuckYou = ''
-      var lowerMessage = message.author.lastMessage.content.toLower()
+      var lowerMessage = message.author.lastMessage.content.toLowerCase()
 
       if (lowerMessage.includes('fuck you bot')) {
         fuckYou = '. Fuck you too Bacon'
@@ -130,7 +130,7 @@ client.on("messageUpdate", (message) => {
   if(JoshMode) {
     if(message.author.id == 230124931461939200) {
       var fuckYou = ''
-      var lowerMessage = message.author.lastMessage.content.toLower()
+      var lowerMessage = message.author.lastMessage.content.toLowerCase()
 
       if (lowerMessage.includes('fuck you bot')) {
         fuckYou = '. Fuck you too Bacon'
