@@ -115,15 +115,21 @@ client.on("message", async message => {
 });
 
 client.on("messageUpdate", (message) => {
-  console.log(message.author.lastMessage.content)
   if(BaconMode) {
     if(message.author.id == 147453766910607369 || message.author.id == 290193372688154624) {
+      var fuckYou = ''
+      var lowerMessage = message.author.lastMessage.content.toLower()
+
+      if (lowerMessage.includes('fuck you bot')) {
+        fuckYou = '. Fuck you too Bacon'
+      }
+
       return message.channel.send(`${message.author.username} tried to edit: ${message.content}`)
     }
   }
   if(JoshMode) {
     if(message.author.id == 230124931461939200) {
-      return message.channel.send(`${message.author.username} tried to edit: ${message.content}`)
+      return message.channel.send(`${message.author.username} tried to edit: ${message.content}` + '. Fuck you too Bacon')
     }
   }
   if(specialTarget != "") {
