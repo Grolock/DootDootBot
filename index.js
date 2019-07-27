@@ -115,6 +115,7 @@ client.on("message", async message => {
 });
 
 client.on("messageUpdate", (message) => {
+  console.log(message)
   if(BaconMode) {
     if(message.author.id == 147453766910607369 || message.author.id == 290193372688154624) {
       return message.channel.send(`${message.author.username} tried to edit: ${message.content}`)
@@ -136,7 +137,6 @@ client.on("messageUpdate", (message) => {
 client.on("messageDelete", (message) => {
 
   if(BaconMode) {
-    console.log(message)
     if(message.author.id == 147453766910607369 || message.author.id == 290193372688154624) {
       return watchDelete(message);
     }
