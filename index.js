@@ -120,6 +120,29 @@ client.on("messageUpdate", (message, newMessage) => {
     console.log("did it work")
   }
 
+  console.log('')
+  console.log('')
+  console.log('')
+  console.log('')
+  console.log('')
+  console.log('')
+  console.log('')
+  console.log('')
+  console.log('')
+  console.log('OLD MESSAGE')
+  console.log(message)
+
+  console.log('')
+  console.log('')
+  console.log('')
+  console.log('')
+  console.log('')
+  console.log('')
+  console.log('')
+  console.log('')
+  console.log('NEW MESSAGE')
+  console.log(newMessage)
+
   if(BaconMode) {
     if(message.author.id == 147453766910607369 || message.author.id == 290193372688154624) {
       var fuckYou = ''
