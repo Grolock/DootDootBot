@@ -114,7 +114,12 @@ client.on("message", async message => {
 
 });
 
-client.on("messageUpdate", (message) => {
+client.on("messageUpdate", (message, newMessage) => {
+
+  if(message == newMessage) {
+    console.log("did it work")
+  }
+
   if(BaconMode) {
     if(message.author.id == 147453766910607369 || message.author.id == 290193372688154624) {
       var fuckYou = ''
@@ -127,7 +132,7 @@ client.on("messageUpdate", (message) => {
       return message.channel.send(`${message.author.username} tried to edit: ${message.content}` + fuckYou)
     }
   }
-  if(JoshMode) {
+  if(!JoshMode) {
     if(message.author.id == 230124931461939200) {
       return message.channel.send(`${message.author.username} tried to edit: ${message.content}`)
     }
