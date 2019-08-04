@@ -116,7 +116,7 @@ client.on("message", async message => {
 
 client.on("messageUpdate", (message, newMessage) => {
 
-  if(message.embeds.length() == 0 && newMessage.embeds.length() > 0) {
+  if(message.embeds.length == 0 && newMessage.embeds.length > 0) {
     console.log("did it work")
   }
 
