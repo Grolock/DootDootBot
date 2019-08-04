@@ -116,53 +116,30 @@ client.on("message", async message => {
 
 client.on("messageUpdate", (message, newMessage) => {
 
-  if(message.embeds.length == 0 && newMessage.embeds.length > 0) {
-    console.log("did it work")
-  }
 
-  console.log('')
-  console.log('')
-  console.log('')
-  console.log('')
-  console.log('')
-  console.log('')
-  console.log('')
-  console.log('')
-  console.log('')
-  console.log('OLD MESSAGE')
-  console.log(message)
+ if (!(message.embeds.length == 0 && newMessage.embeds.length > 0))
+  {
+    if(BaconMode) {
+      if(message.author.id == 147453766910607369 || message.author.id == 290193372688154624) {
+        var fuckYou = ''
+        var lowerMessage = message.author.lastMessage.content.toLowerCase()
 
-  console.log('')
-  console.log('')
-  console.log('')
-  console.log('')
-  console.log('')
-  console.log('')
-  console.log('')
-  console.log('')
-  console.log('NEW MESSAGE')
-  console.log(newMessage)
+        if (lowerMessage.includes('fuck you bot')) {
+          fuckYou = '. Fuck you too Bacon'
+        }
 
-  if(BaconMode) {
-    if(message.author.id == 147453766910607369 || message.author.id == 290193372688154624) {
-      var fuckYou = ''
-      var lowerMessage = message.author.lastMessage.content.toLowerCase()
-
-      if (lowerMessage.includes('fuck you bot')) {
-        fuckYou = '. Fuck you too Bacon'
+        return message.channel.send(`${message.author.username} tried to edit: ${message.content}` + fuckYou)
       }
-
-      return message.channel.send(`${message.author.username} tried to edit: ${message.content}` + fuckYou)
     }
-  }
-  if(!JoshMode) {
-    if(message.author.id == 230124931461939200) {
-      return message.channel.send(`${message.author.username} tried to edit: ${message.content}`)
+    if(!JoshMode) {
+      if(message.author.id == 230124931461939200) {
+        return message.channel.send(`${message.author.username} tried to edit: ${message.content}`)
+      }
     }
-  }
-  if(specialTarget != "") {
-    if(message.author.id == specialTarget) {
-      return message.channel.send(`${message.author.username} tried to edit: ${message.content}`)
+    if(specialTarget != "") {
+      if(message.author.id == specialTarget) {
+        return message.channel.send(`${message.author.username} tried to edit: ${message.content}`)
+      }
     }
   }
 })
