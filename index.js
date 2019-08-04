@@ -131,7 +131,7 @@ client.on("messageUpdate", (message, newMessage) => {
         return message.channel.send(`${message.author.username} tried to edit: ${message.content}` + fuckYou)
       }
     }
-    if(!JoshMode) {
+    if(JoshMode) {
       if(message.author.id == 230124931461939200) {
         return message.channel.send(`${message.author.username} tried to edit: ${message.content}`)
       }
