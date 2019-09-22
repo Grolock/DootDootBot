@@ -117,9 +117,19 @@ client.on("message", async message => {
   if(message.content.toLowerCase().includes('food wars')) {
     console.log('testing this too')
 
-    Anilist.media.anime(20923).then(data => {
-      console.log('testing')
-      console.log(data);
+    Anilist.media.anime(109963).then(data => {
+        let date = data.startDate;
+        let modifiedDate = new Date(date.year, date.month, date.day)
+        let difference = new Date() - modifiedDate
+        let days = Math.floor(difference / (1000 * 60 * 60 * 24))
+        difference = difference - (days * (1000 * 60 * 60))
+        let hours =  Math.floor(difference / (1000 * 60 * 60))
+        difference = difference - (days * (1000 * 60))
+        let minutes =  Math.floor(difference / (1000 * 60))
+        difference = difference - (days * (1000))
+        let seconds = Math.floor(difference / (1000))
+
+        return message.channel.send(`Days ${days} Hours ${hours} Minutes ${minutes} Seconds ${seconds}`)
     });
 
   }
