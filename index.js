@@ -119,16 +119,13 @@ client.on("message", async message => {
 
     Anilist.media.anime(109963).then(data => {
         let date = data.nextAiringEpisode.timeUntilAiring;
-        console.log(data)
-        // let modifiedDate = new Date(date.year, date.month, date.day)
-        let difference = date
-        let days = Math.floor(difference / (1000 * 60 * 60 * 24))
-        difference = difference - (days * (1000 * 60 * 60 * 24))
-        let hours =  Math.floor(difference / (1000 * 60 * 60))
-        difference = difference - (hours * (1000 * 60 * 60))
-        let minutes =  Math.floor(difference / (1000 * 60))
-        difference = difference - (minutes * (1000 * 60))
-        let seconds = Math.floor(difference / (1000))
+        let days = Math.floor(date / (60 * 60 * 24))
+        date = date - (days * (60 * 60 * 24))
+        let hours =  Math.floor(date / (60 * 60))
+        date = date - (hours * (60 * 60))
+        let minutes =  Math.floor(date / (60))
+        date = date - (minutes * (1000 * 60))
+        let seconds = date
 
         return message.channel.send(`${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
     });
