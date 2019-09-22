@@ -118,7 +118,7 @@ client.on("message", async message => {
     console.log('testing this too')
 
     Anilist.media.anime(109963).then(data => {
-        let date = data.airingSchedule.timeUntilAiring;
+        let date = data.nextAiringEpisode.timeUntilAiring;
         console.log(data)
         // let modifiedDate = new Date(date.year, date.month, date.day)
         let difference = date
