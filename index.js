@@ -118,9 +118,9 @@ client.on("message", async message => {
     console.log('testing this too')
 
     Anilist.media.anime(109963).then(data => {
-        let date = data.startDate;
+        let date = data.airingSchedule.timeUntilAiring * -1;
         let modifiedDate = new Date(date.year, date.month, date.day)
-        let difference = modifiedDate - new Date()
+        let difference = date - new Date()
         let days = Math.floor(difference / (1000 * 60 * 60 * 24))
         difference = difference - (days * (1000 * 60 * 60 * 24))
         let hours =  Math.floor(difference / (1000 * 60 * 60))
