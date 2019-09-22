@@ -114,7 +114,7 @@ client.on("message", async message => {
     return message.channel.send(`${dootMoji}${dootMoji}${dootMoji}`);
   };
 
-  if(message.content.include('doot doot how much longer?')) {
+  if(message.content.includes('doot doot how much longer?')) {
     Anilist.media.anime(20923).then(data => {
       console.log(data);
     });
