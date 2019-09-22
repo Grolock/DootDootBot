@@ -127,7 +127,7 @@ client.on("message", async message => {
         let hours =  Math.floor(date / (60 * 60))
         date = date - (hours * (60 * 60))
         let minutes =  Math.floor(date / (60))
-        date = date - (minutes * (1000 * 60))
+        date = date - (minutes * (60))
         let seconds = date
 
         return message.channel.send(`${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
