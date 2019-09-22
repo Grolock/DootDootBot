@@ -129,7 +129,7 @@ client.on("message", async message => {
         difference = difference - (minutes * (1000 * 60))
         let seconds = Math.floor(difference / (1000))
 
-        return message.channel.send(`Days ${days} Hours ${hours} Minutes ${minutes} Seconds ${seconds}`)
+        return message.channel.send(`${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
     });
 
   }
