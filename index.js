@@ -114,7 +114,7 @@ client.on("message", async message => {
     return message.channel.send(`${dootMoji}${dootMoji}${dootMoji}`);
   };
 
-  if(message.content.includes('doot doot how much longer?')) {
+  if(message.content.toLowerCase().includes('food wars')) {
     console.log('testing this too')
 
     Anilist.media.anime(20923).then(data => {
