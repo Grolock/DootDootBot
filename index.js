@@ -1,4 +1,6 @@
 require('dotenv').config()
+const anilist = require('anilist-node');
+const Anilist = new anilist();
 // Load up the discord.js library
 const Discord = require("discord.js");
 
@@ -111,6 +113,13 @@ client.on("message", async message => {
 
     return message.channel.send(`${dootMoji}${dootMoji}${dootMoji}`);
   };
+
+  if(message.content.include('doot doot how much longer?')) {
+    Anilist.media.anime(20923).then(data => {
+      console.log(data);
+    });
+
+  }
 
 });
 
