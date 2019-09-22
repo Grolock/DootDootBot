@@ -115,7 +115,10 @@ client.on("message", async message => {
   };
 
   if(message.content.includes('doot doot how much longer?')) {
+    console.log('testing this too')
+
     Anilist.media.anime(20923).then(data => {
+      console.log('testing')
       console.log(data);
     });
 
