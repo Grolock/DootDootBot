@@ -118,7 +118,7 @@ client.on("message", async message => {
 
     if (message.mentions.users.array().length > 0) {
       console.log('this tried to happen')
-      person = mentions["users"].values().next()
+      person = message.mentions["users"].values().next()
 
       channel = person.createDM()
 
