@@ -116,10 +116,7 @@ client.on("message", async message => {
 
   if(message.content.toLowerCase().includes('food wars')) {
 
-    console.log(message)
     console.log(message.mentions)
-    console.log(message.mentions.length)
-    console.log(message.mentions.length())
     console.log(message.mentions.count())
 
     if (message.mentions.length > 0) {
