@@ -116,12 +116,6 @@ client.on("message", async message => {
 
   if(message.content.toLowerCase().includes('food wars')) {
 
-    if (message.mentions.users.array().length > 0) {
-      console.log('this tried to happen')
-      person = message.mentions.users.first()
-      return person.send(`${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
-    }
-
     Anilist.media.anime(109963).then(data => {
         let date = data.nextAiringEpisode.timeUntilAiring;
         let days = Math.floor(date / (60 * 60 * 24))
@@ -132,10 +126,16 @@ client.on("message", async message => {
         date = date - (minutes * (60))
         let seconds = date
 
-        if (days <= 1)
-        return message.channel.send(`**${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds**`)
+      if (message.mentions.users.array().length > 0) {
+        console.log('this tried to happen')
+        person = message.mentions.users.first()
+        return person.send(`${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
+      }
 
-        return message.channel.send(`${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
+      if (days <= 1)
+      return message.channel.send(`**${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds**`)
+
+      return message.channel.send(`${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
     });
 
   }
