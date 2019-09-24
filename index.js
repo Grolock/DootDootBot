@@ -116,7 +116,7 @@ client.on("message", async message => {
 
   if(message.content.toLowerCase().includes('food wars')) {
 
-    if (message.mentions.array().length > 0) {
+    if (message.mentions.users.array().length > 0) {
       console.log('this tried to happen')
       person = mentions["users"].values().next()
 
