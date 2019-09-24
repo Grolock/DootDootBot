@@ -115,7 +115,14 @@ client.on("message", async message => {
   };
 
   if(message.content.toLowerCase().includes('food wars')) {
-    console.log('testing this too')
+
+    if (message.mentions > 0) {
+      person = mentions["users"].values().next()
+
+      channel = person.createDM()
+
+      return channel.send('Hey did this work')
+    }
 
     Anilist.media.anime(109963).then(data => {
         let date = data.nextAiringEpisode.timeUntilAiring;
