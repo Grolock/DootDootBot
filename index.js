@@ -116,7 +116,9 @@ client.on("message", async message => {
 
   if(message.content.toLowerCase().includes('food wars')) {
 
-    if (message.mentions > 0) {
+    console.log(message)
+    if (message.mentions.length > 0) {
+
       person = mentions["users"].values().next()
 
       channel = person.createDM()
