@@ -126,6 +126,10 @@ client.on("message", async message => {
         date = date - (minutes * (60))
         let seconds = date
 
+      console.log(message.mentions.users)
+      console.log(message.mentions.users.array())
+      console.log(message.mentions.users.array().length)
+
       if (message.mentions.users.array().length > 0) {
         console.log('this tried to happen')
         person = message.mentions.users.first()
