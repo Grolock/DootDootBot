@@ -119,8 +119,7 @@ client.on("message", async message => {
     if (message.mentions.users.array().length > 0) {
       console.log('this tried to happen')
       person = message.mentions.users.first()
-      person.send('hey did this work too')
-      return channel.send('Hey did this work')
+      return person.send(`${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
     }
 
     Anilist.media.anime(109963).then(data => {
