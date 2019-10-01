@@ -102,7 +102,7 @@ client.on("message", async message => {
        if(message.attachments) {
          message.react(dootMoji);
          var test = message.attachments.first().proxyURL
-         const fileUrl = new URL(test);
+         const fileUrl = test;
          var final = fs.readFileSync(fileUrl)
 
          var imageData = jpeg.decode(final)
