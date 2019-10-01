@@ -3,7 +3,8 @@ const anilist = require('anilist-node');
 const Anilist = new anilist();
 // Load up the discord.js library
 const Discord = require("discord.js");
-var Ascii = require('ascii');
+const Ascii = require('ascii-pixels');
+const fs = require('fs');
 
 // This is your client. Some people call it `bot`, some people call it `self`,
 // some might call it `cootchie`. Either way, when you see `client.something`, or `bot.something`,
@@ -99,14 +100,16 @@ client.on("message", async message => {
        let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
 
        if(message.attachments) {
-         console.log(message.attachments.first().proxyURL)
+         message.react(dootMoji);
          var test = message.attachments.first().proxyURL
-         var pic = new Ascii(test)
+         const fileUrl = new URL(test);
+         var final = fs.readFileSync(fileUrl)
 
-         pic.convert(function(err, result) {
-           message.react(dootMoji);
-           return message.channel.send(result);
-         })
+         var imageData = jpeg.decode(final)
+
+         var ascii = Ascii(imageData)
+
+         return message.channel.send(imageData);
        }
 
 
