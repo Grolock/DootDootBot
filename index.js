@@ -3,6 +3,7 @@ const anilist = require('anilist-node');
 const Anilist = new anilist();
 // Load up the discord.js library
 const Discord = require("discord.js");
+const Ascii = require('ascii');
 
 // This is your client. Some people call it `bot`, some people call it `self`,
 // some might call it `cootchie`. Either way, when you see `client.something`, or `bot.something`,
@@ -97,6 +98,16 @@ client.on("message", async message => {
   if(message.content.toUpperCase().includes('DOOT')) {
        let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
 
+       if(message.attachments) {
+         var pic = new Ascii(message.attachments[0].proxytURL)
+
+         pic.convert(function(err, result) {
+           message.react(dootMoji);
+           return message.channel.send(result);
+         })
+       }
+
+
        return message.react(dootMoji);
      }
 
@@ -125,10 +136,6 @@ client.on("message", async message => {
         let minutes =  Math.floor(date / (60))
         date = date - (minutes * (60))
         let seconds = date
-
-      console.log(message.mentions.users)
-      console.log(message.mentions.users.array())
-      console.log(message.mentions.users.array().length)
 
       if (message.mentions.users.array().length > 0) {
         console.log('this tried to happen')
