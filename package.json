@@ -12,6 +12,7 @@
   "dependencies": {
     "anilist-node": "^1.2.0",
     "ascii": "^1.0.0",
+    "ascii-pixels": "^1.2.0",
     "discord.js": "^11.4.2",
     "dotenv": "^7.0.0"
   }
