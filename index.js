@@ -99,18 +99,18 @@ client.on("message", async message => {
   if(message.content.toUpperCase().includes('DOOT')) {
        let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
 
-       if(message.attachments) {
-         message.react(dootMoji);
-         var test = message.attachments.first().proxyURL
-         const fileUrl = 'file://' + test;
-         var final = fs.readFileSync(fileUrl)
-
-         var imageData = jpeg.decode(final)
-
-         var ascii = Ascii(imageData)
-
-         return message.channel.send(imageData);
-       }
+       // if(message.attachments) {
+       //   message.react(dootMoji);
+       //   var test = message.attachments.first().proxyURL
+       //   const fileUrl = 'file://' + test;
+       //   var final = fs.readFileSync(fileUrl)
+       //
+       //   var imageData = jpeg.decode(final)
+       //
+       //   var ascii = Ascii(imageData)
+       //
+       //   return message.channel.send(imageData);
+       // }
 
 
        return message.react(dootMoji);
