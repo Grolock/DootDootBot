@@ -99,7 +99,7 @@ client.on("message", async message => {
        let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
 
        if(message.attachments) {
-         var pic = new Ascii(message.attachments[0].proxyURL)
+         var pic = new Ascii(message.attachments.first().proxyURL)
 
          pic.convert(function(err, result) {
            message.react(dootMoji);
