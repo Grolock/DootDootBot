@@ -130,17 +130,17 @@ client.on("message", async message => {
     return message.channel.send(`${dootMoji}${dootMoji}${dootMoji}`);
   };
 
-  if(message.content.toLowerCase().includes('when does') && message.content.toLowerCase().includes('come out')) {
-    let id = message.content.substring(10, 16).trim()
-    console.log(id)
-    getAnime(parseInt(id), message)
-  }
+  // if(message.content.toLowerCase().includes('when does') && message.content.toLowerCase().includes('come out')) {
+  //   let id = message.content.substring(10, 16).trim()
+  //   console.log(id)
+  //   getAnime(parseInt(id), message)
+  // }
 
   if(message.content.toLowerCase().includes('food wars')) {
       getAnime(114043, message)
   }
 
-  if(message.content.toLowerCase().includes('search') && message.content.toLowerCase().includes('please')) {
+  if(message.content.toLowerCase().includes('when does') && message.content.toLowerCase().includes('come out')) {
     let end = message.content.indexOf('please')
     let searchTerm = message.content.substring(10, end - 1).trim()
     getAnimeByName(searchTerm, message)
