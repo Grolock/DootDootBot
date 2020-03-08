@@ -133,16 +133,16 @@ client.on("message", async message => {
   if(message.content.toLowerCase().includes('when does') && message.content.toLowerCase().includes('come out')) {
     let id = message.substring(11, 16)
 
-    getAnime(id)
+    getAnime(id, message)
   }
 
   if(message.content.toLowerCase().includes('food wars')) {
-      getAnime(114043)
+      getAnime(114043, message)
   }
 
 });
 
-function getAnime(ID) {
+function getAnime(ID, message) {
   Anilist.media.anime(ID).then(data => {
       let date = data.nextAiringEpisode.timeUntilAiring;
       let days = Math.floor(date / (60 * 60 * 24))
@@ -154,7 +154,6 @@ function getAnime(ID) {
       let seconds = date
 
     if (message.mentions.users.array().length > 0) {
-      console.log('this tried to happen')
       person = message.mentions.users.first()
       return person.send(`${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
     }
