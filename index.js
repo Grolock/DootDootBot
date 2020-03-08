@@ -143,14 +143,15 @@ client.on("message", async message => {
   if(message.content.toLowerCase().includes('search') && message.content.toLowerCase().includes('please')) {
     let end = message.content.indexOf('please')
     let searchTerm = message.content.substring(10, end - 1).trim()
-    console.log(searchTerm)
     getAnimeByName(searchTerm, message)
   }
+
 });
 
 function getAnimeByName(searchTerm, message) {
   Anilist.search('anime', searchTerm, 1, 1).then(data => {
-    console.log(data)
+    message.channel.send(`${data.media.title.English} Will release in `)
+    getAnime(data.media.id, message)
   });
 }
 
