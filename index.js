@@ -149,7 +149,7 @@ client.on("message", async message => {
 });
 
 function getAnimeByName(searchTerm, message) {
-  Anilist.search(Anilist.media.anime, searchTerm, 0, 1).then(data => {
+  Anilist.search(Anilist.media.anime, searchTerm, 1, 1).then(data => {
     console.log(data)
   });
 }
