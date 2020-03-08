@@ -143,6 +143,7 @@ client.on("message", async message => {
   if(message.content.toLowerCase().includes('search') && message.content.toLowerCase().includes('please')) {
     let end = message.content.indexOf('please')
     let searchTerm = message.content.substring(10, end - 1).trim()
+    console.log(searchTerm)
     getAnimeByName(searchTerm, message)
   }
 
@@ -150,7 +151,7 @@ client.on("message", async message => {
 
 function getAnimeByName(searchTerm, message) {
   Anilist.search('anime', searchTerm, 1, 1).then(data => {
-    console.log(data.media.title)
+    console.log(data.media)
     getAnime(data.media.id, message)
   });
 }
