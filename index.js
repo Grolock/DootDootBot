@@ -131,7 +131,7 @@ client.on("message", async message => {
   };
 
   if(message.content.toLowerCase().includes('when does') && message.content.toLowerCase().includes('come out')) {
-    let id = message.substring(11, 16)
+    let id = message.content.substring(11, 16)
     console.log(id)
     getAnime(id, message)
   }
