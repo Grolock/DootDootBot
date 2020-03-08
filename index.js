@@ -142,7 +142,7 @@ client.on("message", async message => {
 
   if(message.content.toLowerCase().includes('search') && message.content.toLowerCase().includes('please')) {
     let end = message.content.indexOf('please')
-    let searchTerm = message.content.substring(10, end - 2).trim()
+    let searchTerm = message.content.substring(10, end - 1).trim()
     console.log(searchTerm)
     getAnimeByName(searchTerm, message)
   }
