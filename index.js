@@ -132,7 +132,7 @@ client.on("message", async message => {
 
   if(message.content.toLowerCase().includes('food wars')) {
 
-    Anilist.media.anime(109963).then(data => {
+    Anilist.media.anime(114043).then(data => {
         let date = data.nextAiringEpisode.timeUntilAiring;
         let days = Math.floor(date / (60 * 60 * 24))
         date = date - (days * (60 * 60 * 24))
