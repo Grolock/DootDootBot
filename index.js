@@ -130,33 +130,41 @@ client.on("message", async message => {
     return message.channel.send(`${dootMoji}${dootMoji}${dootMoji}`);
   };
 
+  if(message.content.toLowerCase().includes('when does') && message.content.toLowerCase().includes('come out')) {
+    let id = message.substring(11, 16)
+
+    getAnime(id)
+  }
+
   if(message.content.toLowerCase().includes('food wars')) {
-
-    Anilist.media.anime(114043).then(data => {
-        let date = data.nextAiringEpisode.timeUntilAiring;
-        let days = Math.floor(date / (60 * 60 * 24))
-        date = date - (days * (60 * 60 * 24))
-        let hours =  Math.floor(date / (60 * 60))
-        date = date - (hours * (60 * 60))
-        let minutes =  Math.floor(date / (60))
-        date = date - (minutes * (60))
-        let seconds = date
-
-      if (message.mentions.users.array().length > 0) {
-        console.log('this tried to happen')
-        person = message.mentions.users.first()
-        return person.send(`${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
-      }
-
-      if (days <= 1)
-      return message.channel.send(`**${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds**`)
-
-      return message.channel.send(`${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
-    });
-
+      getAnime(114043)
   }
 
 });
+
+function getAnime(ID) {
+  Anilist.media.anime(ID).then(data => {
+      let date = data.nextAiringEpisode.timeUntilAiring;
+      let days = Math.floor(date / (60 * 60 * 24))
+      date = date - (days * (60 * 60 * 24))
+      let hours =  Math.floor(date / (60 * 60))
+      date = date - (hours * (60 * 60))
+      let minutes =  Math.floor(date / (60))
+      date = date - (minutes * (60))
+      let seconds = date
+
+    if (message.mentions.users.array().length > 0) {
+      console.log('this tried to happen')
+      person = message.mentions.users.first()
+      return person.send(`${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
+    }
+
+    if (days <= 1)
+    return message.channel.send(`**${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds**`)
+
+    return message.channel.send(`${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
+  });
+}
 
 client.on("messageUpdate", (message, newMessage) => {
 
