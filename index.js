@@ -150,7 +150,7 @@ client.on("message", async message => {
 
 function getAnimeByName(searchTerm, message) {
   Anilist.search('anime', searchTerm, 1, 1).then(data => {
-    message.channel.send(`${data.media.title.english} Will release in `)
+    console.log(data.media.title.english)
     getAnime(data.media.id, message)
   });
 }
