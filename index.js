@@ -166,8 +166,8 @@ function getAnime(ID, message, title) {
       date = date - (minutes * (60))
       let seconds = date
 
-    if (title.length > 0) {
-      message.channel.send(`${title} Will release a new episode in\n${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
+    if (title != undefined && title.length > 0) {
+      return message.channel.send(`${title} Will release a new episode in\n${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
     }
 
     if (message.mentions.users.array().length > 0) {
