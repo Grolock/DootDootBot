@@ -151,14 +151,11 @@ client.on("message", async message => {
 
 function getAnimeByName(searchTerm, message) {
   Anilist.search('anime', searchTerm, 1, 1).then(data => {
-    console.log(data.media)
-    console.log(data.media[0].id)
-    console.log(data.media[0].title)
-    getAnime(data.media[0].id, message)
+    getAnime(data.media[0].id, message, data.media[0].title)
   });
 }
 
-function getAnime(ID, message) {
+function getAnime(ID, message, title) {
   Anilist.media.anime(ID).then(data => {
       let date = data.nextAiringEpisode.timeUntilAiring;
       let days = Math.floor(date / (60 * 60 * 24))
@@ -168,6 +165,10 @@ function getAnime(ID, message) {
       let minutes =  Math.floor(date / (60))
       date = date - (minutes * (60))
       let seconds = date
+
+    if (title.length > 0) {
+      message.channel.send(`${title} Will release a new episode in\n${days} Days\n${hours} Hours\n${minutes} Minutes\n${seconds} Seconds`)
+    }
 
     if (message.mentions.users.array().length > 0) {
       person = message.mentions.users.first()
