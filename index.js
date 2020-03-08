@@ -140,7 +140,22 @@ client.on("message", async message => {
       getAnime(114043, message)
   }
 
+  if(message.content.toLowerCase().includes('search') && message.content.toLowerCase().includes('please')) {
+    let end = message.content.indexOf('please')
+    let id = message.content.substring(10, end - 2).trim()
+    console.log(searchTerm)
+    getAnimeByName(searchTerm, message)
+  }
+
+
 });
+
+function getAnimeByName(searchTerm, message) {
+  Anilist.search('anime', searchTerm, 0, 1).then(data => {
+    console.log(data)
+  }
+
+}
 
 function getAnime(ID, message) {
   Anilist.media.anime(ID).then(data => {
