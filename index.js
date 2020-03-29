@@ -140,6 +140,10 @@ client.on("message", async message => {
       getAnime(114043, message)
   }
 
+  if(message.content.toLowerCase().includes('doot doot play')) {
+      playFile('.sound/play.mp3', message)
+  }
+
   if(message.content.toLowerCase().includes('when does') && message.content.toLowerCase().includes('come out')) {
     let end = message.content.indexOf('please')
     let searchTerm = message.content.substring(10, end - 1).trim()
@@ -153,6 +157,21 @@ function getAnimeByName(searchTerm, message) {
     console.log(data.media[0].id)
     getAnime(data.media[0].id, message, data.media[0].title)
   });
+}
+
+
+dunction playFile(path, message) {
+  if (message.member.voiceChannel) {
+    if (message.guild.voiceConnection) {
+        message.member.voiceChannel.join().then(connection => {
+           let broadcast = client.voice.createBroadcast()
+           breadcase.play(file)
+           connection.play().then(c => {
+             message.member.voiceChannel.disconnect()
+           })
+        })
+    }
+  }
 }
 
 function getAnime(ID, message, title) {
