@@ -48,7 +48,7 @@ client.on("message", async message => {
 
   if(message.content.toLowerCase().includes('doot doot play')) {
       let keyword = message.content.substring(14, end - 1).trim()
-      soundDict[keyword] = 'sound/' + keyword + '.mp3'
+      let file = 'sound/' + soundDict[keyword]
 
       playFile(soundDict[keyword], message)
   }
@@ -212,7 +212,7 @@ function saveFile(message) {
 
         console.log(keyword)
 
-        request.get(message.attachments.first().url).pipe(fs.createWriteStream('sounds/' + keyword + '.mp3'))
+        request.get(message.attachments.first().url).pipe(fs.createWriteStream('sound/' + keyword + '.mp3'))
 
         soundDict[keyword] = 'sound/' + keyword + '.mp3';
     // }
