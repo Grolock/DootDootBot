@@ -176,7 +176,7 @@ function playFile(path, message) {
            console.log('more')
            let broadcast = client.createVoiceBroadcast()
            broadcast.playFile(path)
-           connection.playBroadcast(broadcast, {volume: 4})
+           connection.playBroadcast(broadcast, {volume: 2})
 
            // message.member.voiceChannel.leave()
 
