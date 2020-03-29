@@ -66,6 +66,13 @@ client.on("message", async message => {
       }
   }
 
+  if message.content.toLowerCase().includes('doot doot list')) {
+    let returnMessage = 'Available Words:\n'
+     Object.keys(dict).forEach(function (item) {
+        returnMessage += item + " " + dict[item] + "\n"
+     })
+  }
+
 
   // It's good practice to ignore other bots. This also makes your bot ignore itself
   // and not get into a spam loop (we call that "botception").
