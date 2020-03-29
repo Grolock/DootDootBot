@@ -141,6 +141,7 @@ client.on("message", async message => {
   }
 
   if(message.content.toLowerCase().includes('doot doot play')) {
+      console.log('here even')
       playFile('./sound/play.mp3', message)
   }
 
