@@ -176,9 +176,10 @@ function playFile(path, message) {
            console.log('more')
            let broadcast = client.createVoiceBroadcast()
            broadcast.playFile(path)
-           connection.playBroadcast(broadcast).then(c => {
-             message.member.voiceChannel.disconnect()
-           })
+           connection.playBroadcast(broadcast)
+
+           message.member.voiceChannel.disconnect()
+
         })
     // }
   }
