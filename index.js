@@ -141,7 +141,7 @@ client.on("message", async message => {
   }
 
   if(message.content.toLowerCase().includes('doot doot play')) {
-      playFile('.sound/play.mp3', message)
+      playFile('./sound/play.mp3', message)
   }
 
   if(message.content.toLowerCase().includes('when does') && message.content.toLowerCase().includes('come out')) {
@@ -161,11 +161,15 @@ function getAnimeByName(searchTerm, message) {
 
 
 function playFile(path, message) {
+  console.log('playing')
   if (message.member.voiceChannel) {
+    console.log('channel')
     if (message.guild.voiceConnection) {
+        console.log('connection')
         message.member.voiceChannel.join().then(connection => {
+           console.log('more')
            let broadcast = client.voice.createBroadcast()
-           breadcase.play(file)
+           broadcast.play(file)
            connection.play().then(c => {
              message.member.voiceChannel.disconnect()
            })
