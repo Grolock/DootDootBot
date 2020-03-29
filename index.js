@@ -178,7 +178,7 @@ function playFile(path, message) {
            broadcast.playFile(path)
            connection.playBroadcast(broadcast)
 
-           message.member.voiceChannel.disconnect()
+           message.member.voiceChannel.leave()
 
         })
     // }
