@@ -44,7 +44,11 @@ client.on("message", async message => {
 
 
   if(message.content.toLowerCase().includes('doot doot play')) {
-      playFile('./sound/play.mp3', message)
+      playFile('sound/play.mp3', message)
+  }
+
+  if(message.content.toLowerCase().includes('doot doot thanks')) {
+      playFile('sound/welcome.mp3', message)
   }
 
 
