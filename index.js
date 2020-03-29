@@ -175,7 +175,7 @@ function playFile(path, message) {
         message.member.voiceChannel.join().then(connection => {
            console.log('more')
            let broadcast = client.createVoiceBroadcast()
-           broadcast.playFile(file)
+           broadcast.playFile(path)
            connection.VoiceBroadcast().then(c => {
              message.member.voiceChannel.disconnect()
            })
