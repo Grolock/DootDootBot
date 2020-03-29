@@ -51,7 +51,7 @@ client.on("message", async message => {
       playFile('sound/welcome.mp3', message)
   }
 
- 
+
   // It's good practice to ignore other bots. This also makes your bot ignore itself
   // and not get into a spam loop (we call that "botception").
   if(message.author.bot) return;
@@ -174,9 +174,9 @@ function playFile(path, message) {
     //     console.log('connection')
         message.member.voiceChannel.join().then(connection => {
            console.log('more')
-           let broadcast = client.voice.createBroadcast()
-           broadcast.play(file)
-           connection.play().then(c => {
+           let broadcast = client.createVoiceBroadcast()
+           broadcast.playFile(file)
+           connection.VoiceBroadcast().then(c => {
              message.member.voiceChannel.disconnect()
            })
         })
