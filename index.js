@@ -6,6 +6,10 @@ const Discord = require("discord.js");
 const Ascii = require('ascii-pixels');
 const fs = require('fs');
 
+let soundDict = {
+    whatyouget : 'play.mp3'
+}
+
 // This is your client. Some people call it `bot`, some people call it `self`,
 // some might call it `cootchie`. Either way, when you see `client.something`, or `bot.something`,
 // this is what we're refering to. Your client.
@@ -41,14 +45,24 @@ var specialTarget = "";
 client.on("message", async message => {
   // This event will run on every single message received, from any channel or DM.
 
-
-
   if(message.content.toLowerCase().includes('doot doot play')) {
-      playFile('sound/play.mp3', message)
+      let keyword = message.content.substring(14, end - 1).trim()
+      soundDict[keyword] = 'sounds/' + keyword + '.mp3'
+
+      playFile(soundDict[keyword], message)
   }
 
   if(message.content.toLowerCase().includes('doot doot thanks')) {
       playFile('sound/welcome.mp3', message)
+  }
+
+  if(message.content.toLowerCase().includes('doot doot load')) {
+      if (message.attachments.first()) {
+        saveFile(message)
+      }
+      else {
+        loadExisting(message)
+      }
   }
 
 
@@ -185,6 +199,25 @@ function playFile(path, message) {
         })
     // }
   }
+}
+
+function saveFile(message) {
+  if (message.attachments.first()) {
+    if (message.attachments.first().filename.contains('.mp3') {
+        let end = message.content.length
+        let keyword = message.content.substring(17, end - 1).trim()
+
+        request.get(message.attachments.first().url).pipe(fs.CreateWriteStream('sounds/' + keyword + '.mp3')
+
+        soundDict[keyword] = 'sounds/' + keyword + '.mp3';
+    }
+  }
+}
+
+function loadExisting(message) {
+    let end = message.content.length
+    let keyword = message.content.substring(17, end - 1).trim()
+    soundDict[keyword] = 'sounds/' + keyword + '.mp3'
 }
 
 function getAnime(ID, message, title) {
