@@ -53,7 +53,7 @@ client.on("message", async message => {
       console.log(file)
       console.log(keyword)
 
-      playFile(soundDict[keyword], message)
+      playFile(file, message)
   }
 
   if(message.content.toLowerCase().includes('doot doot thanks')) {
