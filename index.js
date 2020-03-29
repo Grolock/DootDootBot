@@ -178,8 +178,11 @@ function playFile(path, message) {
            broadcast.playFile(path)
            connection.playBroadcast(broadcast, {volume: 2})
 
-           // message.member.voiceChannel.leave()
-
+           connection.on('finish', () => {
+              broadcast.end()
+              broadcast.destroy()
+              message.member.voiceChannel.leave()
+           })
         })
     // }
   }
