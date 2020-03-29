@@ -205,7 +205,7 @@ function saveFile(message) {
   if (message.attachments.first()) {
     if (message.attachments.first().filename.contains('.mp3') {
         let end = message.content.length
-        let keyword = message.content.substring(17, end - 1).trim()
+        let keyword = message.content.substring(17, end - 1).trim() 
 
         request.get(message.attachments.first().url).pipe(fs.CreateWriteStream('sounds/' + keyword + '.mp3')
 
