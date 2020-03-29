@@ -5,6 +5,7 @@ const Anilist = new anilist();
 const Discord = require("discord.js");
 const Ascii = require('ascii-pixels');
 const fs = require('fs');
+let request = require(`request`);
 
 let soundDict = {
     whatyouget : 'play.mp3'
@@ -207,7 +208,7 @@ function saveFile(message) {
     console.log(message.attachments.first().filename)
     // if (message.attachments.first().filename.contains('.mp3')) {
         let end = message.content.length
-        let keyword = message.content.substring(17, end - 1).trim()
+        let keyword = message.content.substring(15, end).trim()
 
         console.log(keyword)
 
@@ -220,7 +221,7 @@ function saveFile(message) {
 
 function loadExisting(message) {
     let end = message.content.length
-    let keyword = message.content.substring(17, end - 1).trim()
+    let keyword = message.content.substring(15, end).trim()
     soundDict[keyword] = 'sounds/' + keyword + '.mp3'
 }
 
