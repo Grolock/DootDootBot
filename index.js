@@ -50,6 +50,9 @@ client.on("message", async message => {
       let keyword = message.content.substring(14, end - 1).trim()
       let file = 'sound/' + soundDict[keyword]
 
+      console.log(file)
+      console.log(keyword)
+
       playFile(soundDict[keyword], message)
   }
 
