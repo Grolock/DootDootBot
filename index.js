@@ -44,7 +44,6 @@ client.on("message", async message => {
 
 
   if(message.content.toLowerCase().includes('doot doot play')) {
-      console.log('here even')
       playFile('./sound/play.mp3', message)
   }
 
@@ -165,9 +164,8 @@ function getAnimeByName(searchTerm, message) {
 
 
 function playFile(path, message) {
-  console.log('playing')
   if (message.member.voiceChannel) {
-    console.log('channel')
+    console.log(message.guild)
     if (message.guild.voiceConnection) {
         console.log('connection')
         message.member.voiceChannel.join().then(connection => {
