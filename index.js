@@ -160,7 +160,7 @@ function getAnimeByName(searchTerm, message) {
 }
 
 
-dunction playFile(path, message) {
+function playFile(path, message) {
   if (message.member.voiceChannel) {
     if (message.guild.voiceConnection) {
         message.member.voiceChannel.join().then(connection => {
