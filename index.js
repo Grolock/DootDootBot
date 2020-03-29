@@ -66,11 +66,13 @@ client.on("message", async message => {
       }
   }
 
-  if message.content.toLowerCase().includes('doot doot list')) {
+  if (message.content.toLowerCase().includes('doot doot list')) {
     let returnMessage = 'Available Words:\n'
      Object.keys(dict).forEach(function (item) {
         returnMessage += item + " " + dict[item] + "\n"
      })
+
+     return message.channel.send(returnMessage)
   }
 
 
