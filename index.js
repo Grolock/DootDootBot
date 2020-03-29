@@ -47,7 +47,7 @@ client.on("message", async message => {
   // This event will run on every single message received, from any channel or DM.
 
   if(message.content.toLowerCase().includes('doot doot play')) {
-      let keyword = message.content.substring(14, end - 1).trim()
+      let keyword = message.content.substring(14, message.content.length - 1).trim()
       let file = 'sound/' + soundDict[keyword]
 
       console.log(file)
@@ -226,7 +226,7 @@ function saveFile(message) {
 
         request.get(message.attachments.first().url).pipe(fs.createWriteStream('sound/' + keyword + '.mp3'))
 
-        soundDict[keyword] = 'sound/' + keyword + '.mp3';
+        soundDict[keyword] = keyword + '.mp3';
     // }
   }
 }
@@ -234,7 +234,7 @@ function saveFile(message) {
 function loadExisting(message) {
     let end = message.content.length
     let keyword = message.content.substring(15, end).trim()
-    soundDict[keyword] = 'sound/' + keyword + '.mp3'
+    soundDict[keyword] = keyword + '.mp3'
 }
 
 function getAnime(ID, message, title) {
