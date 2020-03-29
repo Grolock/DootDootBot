@@ -48,7 +48,7 @@ client.on("message", async message => {
 
   if(message.content.toLowerCase().includes('doot doot play')) {
       let keyword = message.content.substring(14, end - 1).trim()
-      soundDict[keyword] = 'sounds/' + keyword + '.mp3'
+      soundDict[keyword] = 'sound/' + keyword + '.mp3'
 
       playFile(soundDict[keyword], message)
   }
@@ -214,7 +214,7 @@ function saveFile(message) {
 
         request.get(message.attachments.first().url).pipe(fs.createWriteStream('sounds/' + keyword + '.mp3'))
 
-        soundDict[keyword] = 'sounds/' + keyword + '.mp3';
+        soundDict[keyword] = 'sound/' + keyword + '.mp3';
     // }
   }
 }
@@ -222,7 +222,7 @@ function saveFile(message) {
 function loadExisting(message) {
     let end = message.content.length
     let keyword = message.content.substring(15, end).trim()
-    soundDict[keyword] = 'sounds/' + keyword + '.mp3'
+    soundDict[keyword] = 'sound/' + keyword + '.mp3'
 }
 
 function getAnime(ID, message, title) {
