@@ -41,6 +41,14 @@ var specialTarget = "";
 client.on("message", async message => {
   // This event will run on every single message received, from any channel or DM.
 
+
+
+  if(message.content.toLowerCase().includes('doot doot play')) {
+      console.log('here even')
+      playFile('./sound/play.mp3', message)
+  }
+
+
   // It's good practice to ignore other bots. This also makes your bot ignore itself
   // and not get into a spam loop (we call that "botception").
   if(message.author.bot) return;
@@ -138,11 +146,6 @@ client.on("message", async message => {
 
   if(message.content.toLowerCase().includes('food wars')) {
       getAnime(114043, message)
-  }
-
-  if(message.content.toLowerCase().includes('doot doot play')) {
-      console.log('here even')
-      playFile('./sound/play.mp3', message)
   }
 
   if(message.content.toLowerCase().includes('when does') && message.content.toLowerCase().includes('come out')) {
