@@ -212,7 +212,7 @@ function saveFile(message) {
 
         console.log(keyword)
 
-        request.get(message.attachments.first().url).pipe(fs.CreateWriteStream('sounds/' + keyword + '.mp3'))
+        request.get(message.attachments.first().url).pipe(fs.createWriteStream('sounds/' + keyword + '.mp3'))
 
         soundDict[keyword] = 'sounds/' + keyword + '.mp3';
     // }
