@@ -165,9 +165,9 @@ function getAnimeByName(searchTerm, message) {
 
 function playFile(path, message) {
   if (message.member.voiceChannel) {
-    console.log(message.guild)
-    if (message.guild.voiceConnection) {
-        console.log('connection')
+    // console.log(message.guild)
+    // if (message.guild.voiceConnection) {
+    //     console.log('connection')
         message.member.voiceChannel.join().then(connection => {
            console.log('more')
            let broadcast = client.voice.createBroadcast()
@@ -176,7 +176,7 @@ function playFile(path, message) {
              message.member.voiceChannel.disconnect()
            })
         })
-    }
+    // }
   }
 }
 
