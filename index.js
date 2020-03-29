@@ -47,7 +47,7 @@ client.on("message", async message => {
   // This event will run on every single message received, from any channel or DM.
 
   if(message.content.toLowerCase().includes('doot doot play')) {
-      let keyword = message.content.substring(14, message.content.length - 1).trim()
+      let keyword = message.content.substring(14, message.content.length).trim()
       let file = 'sound/' + soundDict[keyword]
 
       console.log(file)
