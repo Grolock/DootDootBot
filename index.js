@@ -230,7 +230,7 @@ function saveFile(message) {
 
       request.get(message.attachments.first().url).pipe(fs.createWriteStream('sound/' + keyword + '.mp3'))
 
-      saveToS3(message.attachments.first().url, 'sound/' + keyword + '.mp3')
+      saveToS3('sound/' + keyword + '.mp3', 'sound/' + keyword + '.mp3')
   }
 }
 
