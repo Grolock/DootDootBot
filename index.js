@@ -5,7 +5,16 @@ const Anilist = new anilist();
 const Discord = require("discord.js");
 const Ascii = require('ascii-pixels');
 const fs = require('fs');
+const AWS = require('aws-sdk')
 let request = require(`request`);
+
+
+var bucket = process.env.S3_BUCKET_NAME
+
+const s3 = new AWS.S3({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+})
 
 let soundDict = {
     whatyouget : 'play.mp3'
@@ -216,18 +225,14 @@ function playFile(path, message) {
 
 function saveFile(message) {
   if (message.attachments.first()) {
+      let end = message.content.length
+      let keyword = message.content.substring(15, end).trim()
 
-    console.log(message.attachments.first().filename)
-    // if (message.attachments.first().filename.contains('.mp3')) {
-        let end = message.content.length
-        let keyword = message.content.substring(15, end).trim()
+      saveToS3(message.attachments.first().url, 'sound/' + keyword + '.mp3')
 
-        console.log(keyword)
-
-        request.get(message.attachments.first().url).pipe(fs.createWriteStream('sound/' + keyword + '.mp3'))
-
-        soundDict[keyword] = keyword + '.mp3';
-    // }
+      // request.get(message.attachments.first().url).pipe(fs.createWriteStream('sound/' + keyword + '.mp3'))
+      //
+      // soundDict[keyword] = keyword + '.mp3';
   }
 }
 
@@ -235,6 +240,27 @@ function loadExisting(message) {
     let end = message.content.length
     let keyword = message.content.substring(15, end).trim()
     soundDict[keyword] = keyword + '.mp3'
+}
+
+function saveToS3(fileUrl, fileName) {
+
+    // fs.createReadStream('file.json').pipe(request.post())
+
+    fs.readFile(fileUrl, (err, data) => {
+        if (err) throw err
+
+        const params = {
+          Bucket: bucket,
+          Key: fileName,
+          Body: JSON.stringify(data, null, 2)
+        }
+
+        s3.upload(params, function s3Err, data) {
+          if (s3Err) throw s3
+          console.log('maybe Uploaded')
+        }
+    })
+
 }
 
 function getAnime(ID, message, title) {
