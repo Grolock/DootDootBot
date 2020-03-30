@@ -269,7 +269,7 @@ function readFromS3(url) {
       Key: url
     }
 
-    s3.getObject(params).pipe(fs.createWriteStream(url))
+    s3.getObject(params).createReadStream().pipe(fs.createWriteStream(url))
 
 }
 
