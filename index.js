@@ -244,8 +244,6 @@ function loadExisting(message) {
 
 function saveToS3(fileUrl, fileName) {
 
-    // fs.createReadStream('file.json').pipe(request.post())
-
     fs.readFile(fileUrl, (err, data) => {
         if (err) throw err
 
@@ -254,8 +252,8 @@ function saveToS3(fileUrl, fileName) {
           Key: fileName,
           Body: JSON.stringify(data, null, 2)
         }
- 
-        s3.upload(params, function s3Err, data) {
+
+        s3.upload(params, function (s3Err, data) {
           if (s3Err) throw s3
           console.log('maybe Uploaded')
         }
