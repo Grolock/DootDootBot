@@ -236,9 +236,10 @@ function saveFile(message) {
       let end = message.content.length
       let keyword = message.content.substring(15, end).trim()
 
-      request.get(message.attachments.first().url).pipe(fs.createWriteStream('sound/' + keyword + '.mp3'))
+      let filePath = fs.createWriteStream('sound/' + keyword + '.mp3');
+      request.get(message.attachments.first().url).pipe(filePath)
 
-      saveToS3('sound/' + keyword + '.mp3', 'sound/' + keyword + '.mp3')
+      filePath.on('finish', () => saveToS3('sound/' + keyword + '.mp3', 'sound/' + keyword + '.mp3'))
   }
 }
 
