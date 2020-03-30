@@ -57,7 +57,7 @@ client.on("message", async message => {
 
   if(message.content.toLowerCase().includes('doot doot play')) {
       let keyword = message.content.substring(14, message.content.length).trim()
-      let file = 'sound/' + keyword
+      let file = 'sound/' + keyword + '.mp3'
 
       console.log(file)
       console.log(keyword)
