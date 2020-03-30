@@ -251,7 +251,7 @@ function loadExisting(message) {
 function saveToS3(fileUrl, fileName) {
 
     fs.readFile(fileUrl, (err, data) => {
-        if (err) throw err
+        if (err) console.log(err)
 
         const params = {
           Bucket: bucket,
@@ -273,7 +273,10 @@ function readFromS3(url) {
     }
 
     var testFile = fs.createWriteStream(url);
-    s3.getObject(params).createReadStream().pipe(fs.createWriteStream(testFile))
+    s3.getObject(params (err, data) => {
+      if (err) console.log(err)
+      fs.writeFileSync(url, data.Body.toString());
+    })
 }
 
 function getAnime(ID, message, title) {
