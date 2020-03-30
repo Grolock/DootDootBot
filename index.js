@@ -67,10 +67,10 @@ client.on("message", async message => {
       }
       else {
         let stream = readFromS3(file)
-        stream.pipe(fs.createWriteStream(url))
+        stream.pipe(fs.createWriteStream(file))
         stream.on('finish', () => {
           if (fs.existsSync(file)) {
-
+             playFile(file, message)
           }
         })
       }
