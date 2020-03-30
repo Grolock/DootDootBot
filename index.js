@@ -268,8 +268,7 @@ function saveToS3(fileUrl, fileName) {
 function readFromS3(url) {
     const params = {
       Bucket: bucket,
-      Key: url,
-      Body: JSON.stringify(data, null, 2)
+      Key: url
     }
 
     s3.getObject(params).createReadStream().pipe(fs.createWriteStream(url))
