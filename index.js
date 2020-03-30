@@ -71,8 +71,6 @@ client.on("message", async message => {
           playFile(file, message)
         }
       }
-
-
   }
 
   if(message.content.toLowerCase().includes('doot doot thanks')) {
@@ -274,7 +272,8 @@ function readFromS3(url) {
       Key: url
     }
 
-    s3.getObject(params).createReadStream().pipe(fs.createWriteStream(url))
+    var testFile = require('fs').createWriteStream('url');
+    s3.getObject(params).createReadStream().pipe(fs.createWriteStream(testFile))
 }
 
 function getAnime(ID, message, title) {
