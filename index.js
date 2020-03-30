@@ -272,7 +272,7 @@ function readFromS3(url) {
       Key: url
     }
 
-    var testFile = require('fs').createWriteStream('url');
+    var testFile = fs.createWriteStream(url);
     s3.getObject(params).createReadStream().pipe(fs.createWriteStream(testFile))
 }
 
