@@ -256,7 +256,7 @@ function saveToS3(fileUrl, fileName) {
         s3.upload(params, function (s3Err, data) {
           if (s3Err) throw s3
           console.log('maybe Uploaded')
-        }
+        })
     })
 
 }
