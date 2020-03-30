@@ -251,19 +251,22 @@ function loadExisting(message) {
 
 function saveToS3(fileUrl, fileName) {
 
-    fs.readFile(fileUrl, (err, data) => {
-        if (err) console.log(err)
+    // fs.readFile(fileUrl, (err, data) => {
+    //     if (err) console.log(err)
+    //
+    //
+    //
+    //
+    // })
+    const params = {
+      Bucket: bucket,
+      Key: fileName,
+      Body: fs.createReadStream(fileUrl)
+    }
 
-        const params = {
-          Bucket: bucket,
-          Key: fileName,
-          Body: JSON.stringify(data, null, 2)
-        }
-
-        s3.upload(params, function (s3Err, data) {
-          if (s3Err) throw s3
-          console.log('maybe Uploaded')
-        })
+    s3.upload(params, function (s3Err, data) {
+      if (s3Err) throw s3
+      console.log('maybe Uploaded')
     })
 }
 
