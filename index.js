@@ -67,6 +67,7 @@ client.on("message", async message => {
       }
       else {
         readFromS3(file)
+        playFile(file, message)
       }
 
 
@@ -272,8 +273,6 @@ function readFromS3(url) {
     }
 
     s3.getObject(params).createReadStream().pipe(fs.createWriteStream(url))
-
-    playFile(url)
 }
 
 function getAnime(ID, message, title) {
