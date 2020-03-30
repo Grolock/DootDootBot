@@ -273,7 +273,7 @@ function readFromS3(url) {
     }
 
     var testFile = fs.createWriteStream(url);
-    s3.getObject(params (err, data) => {
+    s3.getObject(params, (err, data) => {
       if (err) console.log(err)
       fs.writeFileSync(url, data.Body.toString());
     })
