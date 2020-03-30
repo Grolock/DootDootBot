@@ -228,11 +228,9 @@ function saveFile(message) {
       let end = message.content.length
       let keyword = message.content.substring(15, end).trim()
 
-      saveToS3(message.attachments.first().url, 'sound/' + keyword + '.mp3')
+      request.get(message.attachments.first().url).pipe(fs.createWriteStream('sound/' + keyword + '.mp3'))
 
-      // request.get(message.attachments.first().url).pipe(fs.createWriteStream('sound/' + keyword + '.mp3'))
-      //
-      // soundDict[keyword] = keyword + '.mp3';
+      saveToS3(message.attachments.first().url, 'sound/' + keyword + '.mp3')
   }
 }
 
