@@ -67,7 +67,9 @@ client.on("message", async message => {
       }
       else {
         readFromS3(file)
-        playFile(file, message)
+        if (fs.existsSync(file)) {
+          playFile(file, message)
+        }
       }
 
 
@@ -217,7 +219,7 @@ function playFile(path, message) {
     // if (message.guild.voiceConnection) {
     //     console.log('connection')
         message.member.voiceChannel.join().then(connection => {
-           console.log('more')
+           console.log(path)
            let broadcast = client.createVoiceBroadcast()
            broadcast.playFile(path)
            connection.playBroadcast(broadcast, {volume: 1})
