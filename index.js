@@ -62,7 +62,14 @@ client.on("message", async message => {
       console.log(file)
       console.log(keyword)
 
-      playFile(file, message)
+      if (fs.existsSync(path)) {
+         playFile(file, message)
+      }
+      else {
+        readFromS3(path)
+      }
+
+
   }
 
   if(message.content.toLowerCase().includes('doot doot thanks')) {
@@ -256,7 +263,18 @@ function saveToS3(fileUrl, fileName) {
           console.log('maybe Uploaded')
         })
     })
+}
 
+function readFromS3(url) {
+    const params = {
+      Bucket: bucket,
+      Key: url,
+      Body: JSON.stringify(data, null, 2)
+    }
+
+    s3.getObject(params).createReadStream().pipe(fs.createWriteStream(url))
+
+    playFile(url)
 }
 
 function getAnime(ID, message, title) {
