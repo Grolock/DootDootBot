@@ -62,11 +62,11 @@ client.on("message", async message => {
       console.log(file)
       console.log(keyword)
 
-      if (fs.existsSync(path)) {
+      if (fs.existsSync(file)) {
          playFile(file, message)
       }
       else {
-        readFromS3(path)
+        readFromS3(file)
       }
 
 
