@@ -275,13 +275,13 @@ function readFromS3(url) {
     }
 
     s3.headObject(params, function (err, metadata) {
-    if (err && err.code === 'NotFound') {
-      console.log('nope')
-    }
-    else {
-      return s3.getObject(params).createReadStream()
-    }
-
+      if (err && err.code === 'NotFound') {
+        console.log('nope')
+      }
+      else {
+        return s3.getObject(params).createReadStream()
+      }
+    })
 }
 
 function getAnime(ID, message, title) {
