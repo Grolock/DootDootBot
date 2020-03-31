@@ -216,12 +216,10 @@ function getAnimeByName(searchTerm, message) {
 
 function playFile(path, message) {
   if (message.member.voiceChannel) {
-
-    let channel = message.member.voiceChannel
     // console.log(message.guild)
     // if (message.guild.voiceConnection) {
     //     console.log('connection')
-        channel.join().then(connection => {
+        message.member.voiceChannel.join().then(connection => {
            console.log(path)
            let broadcast = client.createVoiceBroadcast()
            broadcast.playFile(path)
@@ -229,7 +227,7 @@ function playFile(path, message) {
 
            broadcast.on('end', () => {
               broadcast.destroy()
-              channel.leave()
+              message.member.voiceChannel.leave()
            })
         })
     // }
@@ -274,14 +272,7 @@ function readFromS3(url) {
       Key: url
     }
 
-    s3.headObject(params, function (err, metadata) {
-      if (err && err.code === 'NotFound') {
-        console.log('nope')
-      }
-      else {
-        return s3.getObject(params).createReadStream()
-      }
-    })
+    return s3.getObject(params).createReadStream()
 }
 
 function getAnime(ID, message, title) {
