@@ -106,9 +106,8 @@ client.on("message", async message => {
          collection.find({}).toArray(function(err, docs) {
            console.log(docs)
              docs.forEach(function (item) {
-               console.log(item)
-
-                returnMessage += item.name + '  used ' + item.uses + ' times'
+                console.log(item)
+                returnMessage += `${item.name} used ${item.uses} times`
              })
              client.close()
          })
