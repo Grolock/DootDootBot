@@ -361,7 +361,6 @@ client.on("messageDelete", (message) => {
 
 function saveToDB(obj) {
     MongoClient.connect(MongoURL, function(err, client) {
-      assert.equal(null, err);
       console.log("Connected successfully to server");
 
       const db = client.db(dbName);
