@@ -108,7 +108,7 @@ client.on("message", async message => {
                console.log(err)
              else {
                docs.forEach(function (item) {
-                  returnMessage += item.name + '  used ' + item.
+                  returnMessage += item.name + '  used ' + item.uses + ' times'
                })
              }
              client.close()
@@ -379,7 +379,7 @@ function saveToDB(obj) {
 
       const db = client.db(dbName);
 
-      const collection = db.collection('Audio')
+      let collection = db.collection('Audio')
 
       collection.find({name: obj.name}).toArray(function(err, docs) {
           if (err != null)
@@ -387,6 +387,9 @@ function saveToDB(obj) {
           else {
             if (docs.length > 0) {
               collection.updateOne({name: obj.name}, { $set: {uses: docs[0].uses + 1}, function(err, result) {console.log('updated')}})
+
+              collection = db.collection('Uses')
+              collection.insertOne({name: obj.name, used: new Date()}, function(err, result) {console.log('inserted')})
             }
             else {
               collection.insertOne({name: obj.name, uses: 1}, function(err, result) {console.log('inserted')})
