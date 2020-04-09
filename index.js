@@ -63,8 +63,7 @@ client.on("message", async message => {
       let keyword = message.content.substring(14, message.content.length).trim()
       let file = 'sound/' + keyword + '.mp3'
 
-      console.log(file)
-      console.log(keyword)
+      saveToDB({name: keyword})
 
       if (fs.existsSync(file)) {
          playFile(file, message)
@@ -96,10 +95,25 @@ client.on("message", async message => {
   }
 
   if (message.content.toLowerCase().includes('doot doot list')) {
-    let returnMessage = 'Available Words:\n'
-     Object.keys(soundDict).forEach(function (item) {
-        returnMessage += item + " " + soundDict[item] + "\n"
-     })
+      let returnMessage = 'Available Words:\n'
+       MongoClient.connect(MongoURL, function(err, client) {
+         console.log(err);
+
+         const db = client.db(dbName);
+
+         const collection = db.collection('Audio')
+
+         collection.find().toArray(function(err, docs) {
+             if (err != null)
+               console.log(err)
+             else {
+               docs.forEach(function (item) {
+                  returnMessage += item.name
+               })
+             }
+             client.close()
+         })
+     });
 
      return message.channel.send(returnMessage)
   }
