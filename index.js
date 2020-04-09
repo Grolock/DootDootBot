@@ -376,7 +376,7 @@ function saveToDB(obj) {
               collection.updateOne({name: obj.name}, { $set: {uses: docs[0].uses + 1}, function(err, result) {console.log('updated')}})
             }
             else {
-              collection.insertOne(obj, function)
+              collection.insertOne({name: obj.name, uses: 1}, function(err, result) {console.log('inserted')})
             }
           }
 
