@@ -104,7 +104,10 @@ client.on("message", async message => {
          const collection = db.collection('Audio')
 
          collection.find({}).toArray(function(err, docs) {
+           console.log(docs)
              docs.forEach(function (item) {
+               console.log(item)
+
                 returnMessage += item.name + '  used ' + item.uses + ' times'
              })
              client.close()
