@@ -111,9 +111,9 @@ client.on("message", async message => {
              })
              client.close()
          })
-     });
 
-     return message.channel.send(returnMessage)
+          return message.channel.send(returnMessage)
+     });
   }
 
 
