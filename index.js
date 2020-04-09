@@ -107,12 +107,11 @@ client.on("message", async message => {
            console.log(docs)
              docs.forEach(function (item) {
                 console.log(item)
-                returnMessage = returnMessage + `${item.name} used ${item.uses} times\n`
+                returnMessage += `${item.name} used ${item.uses} times\n`
              })
              client.close()
+             return message.channel.send(returnMessage)
          })
-
-          return message.channel.send(returnMessage)
      });
   }
 
