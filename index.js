@@ -112,7 +112,7 @@ client.on("message", async message => {
                 console.log(item)
                 returnMessage += `${item.name}`
                 if (usage) {
-                  returnMessage += ` used ${item.uses} times\n`
+                  returnMessage += `\t\t\t\tused ${item.uses} times\n`
                 }
                 else {
                   returnMessage += '\n'
@@ -399,6 +399,8 @@ function saveToDB(obj) {
             }
             else {
               collection.insertOne({name: obj.name, uses: 1}, function(err, result) {console.log('inserted')})
+              collection = db.collection('Uses')
+              collection.insertOne({name: obj.name, used: new Date()}, function(err, result) {console.log('inserted')})
             }
           }
 
