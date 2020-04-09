@@ -103,7 +103,7 @@ client.on("message", async message => {
 
          const collection = db.collection('Audio')
 
-         collection.find().toArray(function(err, docs) {
+         collection.find({}).toArray(function(err, docs) {
              if (err != null)
                console.log(err)
              else {
