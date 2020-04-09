@@ -110,7 +110,13 @@ client.on("message", async message => {
            console.log(docs)
              docs.forEach(function (item) {
                 console.log(item)
-                returnMessage += `${item.name}` + usage ? ` used ${item.uses} times\n` : ''
+                returnMessage += `${item.name}`
+                if (usage) {
+                  returnMessage += ` used ${item.uses} times\n`
+                }
+                else {
+                  returnMessage += '\n'
+                }
              })
              client.close()
              return message.channel.send(returnMessage)
