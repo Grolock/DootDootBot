@@ -1,4 +1,5 @@
 require('dotenv').config()
+const MongoClient = require('mongodb').MongoClient;
 const anilist = require('anilist-node');
 const Anilist = new anilist();
 // Load up the discord.js library
@@ -7,7 +8,9 @@ const Ascii = require('ascii-pixels');
 const fs = require('fs');
 const AWS = require('aws-sdk')
 let request = require(`request`);
+const dbName = process.env.DB_NAME
 
+const MongoURL = process.env.MONGODB_URI
 
 var bucket = process.env.S3_BUCKET_NAME
 
@@ -19,6 +22,7 @@ const s3 = new AWS.S3({
 let soundDict = {
     whatyouget : 'play.mp3'
 }
+
 
 // This is your client. Some people call it `bot`, some people call it `self`,
 // some might call it `cootchie`. Either way, when you see `client.something`, or `bot.something`,
@@ -78,6 +82,8 @@ client.on("message", async message => {
 
   if(message.content.toLowerCase().includes('doot doot thanks')) {
       playFile('sound/welcome.mp3', message)
+
+      saveToDB({name: 'thanks'})
   }
 
   if(message.content.toLowerCase().includes('doot doot load')) {
@@ -220,7 +226,7 @@ function playFile(path, message) {
     // if (message.guild.voiceConnection) {
     //     console.log('connection')
         message.member.voiceChannel.join().then(connection => {
-           console.log(path)
+
            let broadcast = client.createVoiceBroadcast()
            broadcast.playFile(path)
            connection.playBroadcast(broadcast, {volume: 1})
@@ -352,6 +358,32 @@ client.on("messageDelete", (message) => {
   }
 
 });
+
+function saveToDB(obj) {
+    MongoClient.connect(MongoURL, function(err, client) {
+      assert.equal(null, err);
+      console.log("Connected successfully to server");
+
+      const db = client.db(dbName);
+
+      const collection = db.collection('Audio')
+
+      collection.find({name: obj.name}).toArray(function(err, docs) {
+          if (err != null)
+            console.log(err)
+          else {
+            if (docs.length > 0) {
+              collection.updateOne({name: obj.name}, { $set: {uses: docs[0].uses + 1}, function(err, result) {console.log('updated')}})
+            }
+            else {
+              collection.insertOne(obj, function)
+            }
+          }
+
+          client.close()
+      })
+  });
+}
 
 function watchDelete(message) {
   files = [];
