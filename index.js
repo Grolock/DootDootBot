@@ -95,6 +95,9 @@ client.on("message", async message => {
   }
 
   if (message.content.toLowerCase().includes('doot doot list')) {
+    var usage = false;
+    if (message.content.toLowerCase().includes('usage')) { usage = true }
+
       let returnMessage = 'Available Words:\n'
        MongoClient.connect(MongoURL, function(err, client) {
          console.log(err);
@@ -107,7 +110,7 @@ client.on("message", async message => {
            console.log(docs)
              docs.forEach(function (item) {
                 console.log(item)
-                returnMessage += `${item.name}     used ${item.uses} times\n`
+                returnMessage += `${item.name}` + usage ? ` used ${item.uses} times\n` : ''
              })
              client.close()
              return message.channel.send(returnMessage)
