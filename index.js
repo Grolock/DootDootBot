@@ -104,13 +104,9 @@ client.on("message", async message => {
          const collection = db.collection('Audio')
 
          collection.find({}).toArray(function(err, docs) {
-             if (err != null)
-               console.log(err)
-             else {
-               docs.forEach(function (item) {
-                  returnMessage += item.name + '  used ' + item.uses + ' times'
-               })
-             }
+             docs.forEach(function (item) {
+                returnMessage += item.name + '  used ' + item.uses + ' times'
+             })
              client.close()
          })
      });
