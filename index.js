@@ -108,7 +108,7 @@ client.on("message", async message => {
                console.log(err)
              else {
                docs.forEach(function (item) {
-                  returnMessage += item.name
+                  returnMessage += item.name + '  used ' + item.
                })
              }
              client.close()
