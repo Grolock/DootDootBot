@@ -394,15 +394,15 @@ function saveToDB(obj) {
             console.log(err)
           else {
             if (docs.length > 0) {
-              collection.updateOne({name: obj.name}, { $set: {uses: docs[0].uses + 1}, function(err, result) {console.log('updated')}})
+              collection.updateOne({name: obj.name, person: obj.person}, { $set: {uses: docs[0].uses + 1}, function(err, result) {console.log('updated')}})
 
               collection = db.collection('Uses')
-              collection.insertOne({name: obj.name, used: new Date()}, function(err, result) {console.log('inserted')})
+              collection.insertOne({name: obj.name, used: new Date(), person: obj.person}, function(err, result) {console.log('inserted')})
             }
             else {
-              collection.insertOne({name: obj.name, uses: 0}, function(err, result) {console.log('inserted')})
+              collection.insertOne({name: obj.name, person: obj.person, uses: 0}, function(err, result) {console.log('inserted')})
               collection = db.collection('Uses')
-              collection.insertOne({name: obj.name, used: new Date()}, function(err, result) {console.log('inserted')})
+              collection.insertOne({name: obj.name, used: new Date(), person: obj.person}, function(err, result) {console.log('inserted')})
             }
           }
 
