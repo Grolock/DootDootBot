@@ -63,7 +63,7 @@ client.on("message", async message => {
       let keyword = message.content.substring(14, message.content.length).trim()
       let file = 'sound/' + keyword + '.mp3'
 
-      saveToDB({name: keyword})
+      saveToDB({name: keyword, person: message.author.username})
 
       if (fs.existsSync(file)) {
          playFile(file, message)
@@ -82,7 +82,7 @@ client.on("message", async message => {
   if(message.content.toLowerCase().includes('doot doot thanks')) {
       playFile('sound/welcome.mp3', message)
 
-      saveToDB({name: 'thanks'})
+      saveToDB({name: 'thanks', person: message.author.username})
   }
 
   if(message.content.toLowerCase().includes('doot doot load')) {
@@ -268,6 +268,8 @@ function saveFile(message) {
       let filePath = fs.createWriteStream('sound/' + keyword + '.mp3');
       request.get(message.attachments.first().url).pipe(filePath)
 
+      saveToDB({name: keyword, person: message.author.username})
+
       filePath.on('finish', () => saveToS3('sound/' + keyword + '.mp3', 'sound/' + keyword + '.mp3'))
   }
 }
@@ -398,7 +400,7 @@ function saveToDB(obj) {
               collection.insertOne({name: obj.name, used: new Date()}, function(err, result) {console.log('inserted')})
             }
             else {
-              collection.insertOne({name: obj.name, uses: 1}, function(err, result) {console.log('inserted')})
+              collection.insertOne({name: obj.name, uses: 0}, function(err, result) {console.log('inserted')})
               collection = db.collection('Uses')
               collection.insertOne({name: obj.name, used: new Date()}, function(err, result) {console.log('inserted')})
             }
