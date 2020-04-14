@@ -140,6 +140,10 @@ client.on("message", async message => {
         return channel.send(`${dingdance}`)
       }
 
+      if(message.content.includes('doot doot say')) {
+         return message.channel.send(message.content.substring(14, message.content.length))
+      }
+
       if(message.content.includes('DemoMode toggle')) {
         JoshMode = !JoshMode;
 
