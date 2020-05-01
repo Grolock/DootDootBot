@@ -250,14 +250,10 @@ function playFile(path, message) {
       message.member.voice.channel.join().then(connection => {
 
          let broadcast = client.voice.createBroadcast()
-         broadcast.play(path, {volume: 1})
+         broadcast.play(path, {volume: 1}).on('speaking', () => {
+            message.member.voice.channel.leave()
+         })
          connection.play(broadcast)
-
-         broadcast.end()
-
-         // broadcast.on('unsubscribe', () => {
-         //    message.member.voice.channel.leave()
-         // })
       })
   }
 }
