@@ -135,7 +135,7 @@ client.on("message", async message => {
         var channel = message.channel
         message.delete()
 
-        let dingdance = client.emojis.find(emoji => emoji.name ==='DingDance');
+        let dingdance = client.emojis.cache.find(emoji => emoji.name ==='DingDance');
 
         return channel.send(`${dingdance}`)
       }
@@ -185,7 +185,7 @@ client.on("message", async message => {
     }
 
   if(message.content.toUpperCase().includes('DOOT')) {
-       let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
+       let dootMoji = client.emojis.cache.find(emoji => emoji.name ==='dootdoot');
 
        // if(message.attachments) {
        //   message.react(dootMoji);
@@ -206,14 +206,14 @@ client.on("message", async message => {
 
   if(message.content.includes('@here')) {
 
-    let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
+    let dootMoji = client.emojis.cache.find(emoji => emoji.name ==='dootdoot');
 
     return message.channel.send(`${dootMoji}${dootMoji}`);
   };
 
   if(message.content.includes('@everyone')) {
 
-    let dootMoji = client.emojis.find(emoji => emoji.name ==='dootdoot');
+    let dootMoji = client.emojis.cache.find(emoji => emoji.name ==='dootdoot');
 
     return message.channel.send(`${dootMoji}${dootMoji}${dootMoji}`);
   };
