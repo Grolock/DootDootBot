@@ -251,11 +251,13 @@ function playFile(path, message) {
 
          let broadcast = client.voice.createBroadcast()
          broadcast.play(path, {volume: 1})
-         connection.play(broadcast)
-
-         broadcast.on('speaking', () => {
+         connection.play(broadcast).then(test => {
             message.member.voice.channel.leave()
          })
+
+         // connection.on('end', () => {
+         //    message.member.voice.channel.leave()
+         // })
       })
   }
 }
