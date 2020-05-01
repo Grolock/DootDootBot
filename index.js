@@ -253,7 +253,7 @@ function playFile(path, message) {
          broadcast.play(path, {volume: 1})
          connection.play(broadcast)
 
-         broadcast.on('end', () => {
+         broadcast.on('speaking', () => {
             message.member.voice.channel.leave()
          })
       })
