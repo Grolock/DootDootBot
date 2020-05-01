@@ -141,6 +141,7 @@ client.on("message", async message => {
       }
 
       if(message.content.includes('doot doot say')) {
+         message.delete()
          return message.channel.send(message.content.substring(14, message.content.length))
       }
 
@@ -249,15 +250,15 @@ function playFile(path, message) {
     // console.log(message.guild)
     // if (message.guild.voiceConnection) {
     //     console.log('connection')
-        message.member.voiceChannel.join().then(connection => {
+        message.member.voice.channel.join().then(connection => {
 
-           let broadcast = client.createVoiceBroadcast()
-           broadcast.playFile(path)
-           connection.playBroadcast(broadcast, {volume: 1})
+           let broadcast = client.voice.createBroadcast()
+           broadcast.play(path, {volume: 1})
+           connection.play(broadcast)
 
            broadcast.on('end', () => {
               broadcast.destroy()
-              message.member.voiceChannel.leave()
+              message.member.voice.channel.leave()
            })
         })
     // }
