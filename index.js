@@ -246,22 +246,21 @@ function getAnimeByName(searchTerm, message) {
 
 
 function playFile(path, message) {
-  if (message.member.voiceChannel) {
+  if (message.member.voice.channel) {
     // console.log(message.guild)
     // if (message.guild.voiceConnection) {
     //     console.log('connection')
-        message.member.voice.channel.join()
-        // .then(connection => {
-        //
-        //    let broadcast = client.voice.createBroadcast()
-        //    broadcast.play(path, {volume: 1})
-        //    connection.play(broadcast)
-        //
-        //    broadcast.on('end', () => {
-        //       broadcast.destroy()
-        //       message.member.voice.channel.leave()
-        //    })
-        // })
+        message.member.voice.channel.join().then(connection => {
+
+           let broadcast = client.voice.createBroadcast()
+           broadcast.play(path, {volume: 1})
+           connection.play(broadcast)
+
+           broadcast.on('end', () => {
+              broadcast.destroy()
+              message.member.voice.channel.leave()
+           })
+        })
     // }
   }
 }
