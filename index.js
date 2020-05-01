@@ -250,17 +250,18 @@ function playFile(path, message) {
     // console.log(message.guild)
     // if (message.guild.voiceConnection) {
     //     console.log('connection')
-        message.member.voice.channel.join().then(connection => {
-
-           let broadcast = client.voice.createBroadcast()
-           broadcast.play(path, {volume: 1})
-           connection.play(broadcast)
-
-           broadcast.on('end', () => {
-              broadcast.destroy()
-              message.member.voice.channel.leave()
-           })
-        })
+        message.member.voice.channel.join()
+        // .then(connection => {
+        //
+        //    let broadcast = client.voice.createBroadcast()
+        //    broadcast.play(path, {volume: 1})
+        //    connection.play(broadcast)
+        //
+        //    broadcast.on('end', () => {
+        //       broadcast.destroy()
+        //       message.member.voice.channel.leave()
+        //    })
+        // })
     // }
   }
 }
@@ -388,8 +389,6 @@ client.on("messageDelete", (message) => {
 
 function saveToDB(obj) {
     MongoClient.connect(MongoURL, function(err, client) {
-      console.log(err);
-
       const db = client.db(dbName);
 
       let collection = db.collection('Audio')
