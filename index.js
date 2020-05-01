@@ -253,9 +253,11 @@ function playFile(path, message) {
          broadcast.play(path, {volume: 1})
          connection.play(broadcast)
 
-         broadcast.on('unsubscribe', () => {
-            message.member.voice.channel.leave()
-         })
+         broadcast.end()
+
+         // broadcast.on('unsubscribe', () => {
+         //    message.member.voice.channel.leave()
+         // })
       })
   }
 }
