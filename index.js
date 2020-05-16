@@ -303,18 +303,19 @@ function readFromS3(url) {
       Bucket: bucket,
       Key: url
     }
-
-    s3.getObject(params, function(err, metadata) {
-      if (err && err.code === 'NoSuchKey')
+      var test
+    try {
+      test = s3.getObject(params).createReadStream()
+    }
+    catch (e) {
+      if (e.code == 'NoSuchKey')
       {
-          console.log('NoKeyError')
-          return null;
+        console.log('the error')
+        test = null
       }
-      else {
-          console.log('Thingy')
-          // return s3.getObject(params).createReadStream()
-      }
-    }).createReadStream()
+    }
+
+    return test
 
     // s3.headObject(params, function (err, metadata) {
     //   if (err && err.code === 'NoSuchKey')
@@ -328,8 +329,8 @@ function readFromS3(url) {
     //   }
     // })
 
-    console.log('stuff')
-    return s3.getObject(params).createReadStream()
+    // console.log('stuff')
+    // return s3.getObject(params).createReadStream()
 }
 
 function getAnime(ID, message, title) {
