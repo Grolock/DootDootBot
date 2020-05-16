@@ -304,19 +304,32 @@ function readFromS3(url) {
       Key: url
     }
 
-    s3.headObject(params, function (err, metadata) {
-      if (err)
-      {
-        console.log('Failed')
-          return null;
-      }
-      else {
-        console.log('Succeded?')
-          // return s3.getObject(params).createReadStream()
-      }
-    })
-    console.log('made it to the bottom')
-    return s3.getObject(params).createReadStream()
+    var test;
+
+    try
+    {
+       test = s3.getObject(params).createReadStream()
+    }
+    catch (error)
+    {
+       test = null
+    }
+
+    return test
+
+    // s3.headObject(params, function (err, metadata) {
+    //   if (err)
+    //   {
+    //     console.log('Failed')
+    //       return null;
+    //   }
+    //   else {
+    //     console.log('Succeded?')
+    //       // return s3.getObject(params).createReadStream()
+    //   }
+    // })
+    // console.log('made it to the bottom')
+    // return s3.getObject(params).createReadStream()
 }
 
 function getAnime(ID, message, title) {
