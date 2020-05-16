@@ -308,7 +308,8 @@ function readFromS3(url) {
 
     try
     {
-       test = s3.getObject(params).createReadStream()
+       test = s3.getObject(params)
+       test.createReadStream()
     }
     catch (error)
     {
