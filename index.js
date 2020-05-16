@@ -304,7 +304,7 @@ function readFromS3(url) {
       Key: url
     }
 
-    s3.head(params, function (err, metadata) {
+    s3.headObject(params, function (err, metadata) {
       if (err)
       {
           return null;
@@ -314,7 +314,7 @@ function readFromS3(url) {
       }
     })
 
-    return s3.getObject(params).createReadStream()
+    // return s3.getObject(params).createReadStream()
 }
 
 function getAnime(ID, message, title) {
