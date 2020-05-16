@@ -70,18 +70,12 @@ client.on("message", async message => {
       }
       else {
         let stream = readFromS3(file)
-
-        if (stream != null) {
-          stream.pipe(fs.createWriteStream(file))
-          stream.on('finish', () => {
-            if (fs.existsSync(file)) {
-               playFile(file, message)
-            }
-          })
-        }
-        else {
-          return message.channel.send("Learn how to spell")
-        }
+        stream.pipe(fs.createWriteStream(file))
+        stream.on('finish', () => {
+          if (fs.existsSync(file)) {
+             playFile(file, message)
+          }
+        })
       }
   }
 
@@ -303,34 +297,8 @@ function readFromS3(url) {
       Bucket: bucket,
       Key: url
     }
-      var test
-    try {
-      test = s3.getObject(params).createReadStream()
-    }
-    catch (e) {
-      if (e.code == 'NoSuchKey')
-      {
-        console.log('the error')
-        test = null
-      }
-    }
 
-    return test
-
-    // s3.headObject(params, function (err, metadata) {
-    //   if (err && err.code === 'NoSuchKey')
-    //   {
-    //     console.log('NoKeyError')
-    //       return null;
-    //   }
-    //   else {
-    //     console.log('Thingy')
-    //       return s3.getObject(params).createReadStream()
-    //   }
-    // })
-
-    // console.log('stuff')
-    // return s3.getObject(params).createReadStream()
+    return s3.getObject(params).createReadStream()
 }
 
 function getAnime(ID, message, title) {
