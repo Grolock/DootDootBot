@@ -305,7 +305,7 @@ function readFromS3(url) {
     }
 
     s3.headObject(params, function (err, metadata) {
-      if (err && err.code === 'NotFound')
+      if (err)
       {
           return null;
       }
