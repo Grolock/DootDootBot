@@ -307,13 +307,16 @@ function readFromS3(url) {
     s3.headObject(params, function (err, metadata) {
       if (err && err.code === 'NoSuchKey')
       {
+        console.log('NoKeyError')
           return null;
       }
-      else {
+      else {\
+        console.log('Thingy')
           return s3.getObject(params).createReadStream()
       }
     })
 
+    console.log('stuff')
     return s3.getObject(params).createReadStream()
 }
 
