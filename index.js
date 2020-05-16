@@ -310,7 +310,7 @@ function readFromS3(url) {
         console.log('NoKeyError')
           return null;
       }
-      else {\
+      else {
         console.log('Thingy')
           return s3.getObject(params).createReadStream()
       }
