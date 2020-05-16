@@ -310,11 +310,11 @@ function readFromS3(url) {
           return null;
       }
       else {
-          return s3.getObject(params).createReadStream()
+          // return s3.getObject(params).createReadStream()
       }
     })
 
-    // return s3.getObject(params).createReadStream()
+    return s3.getObject(params).createReadStream()
 }
 
 function getAnime(ID, message, title) {
