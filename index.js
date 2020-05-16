@@ -304,7 +304,7 @@ function readFromS3(url) {
       Key: url
     }
 
-    s3.headObject(params, function (err, metadata) {
+    s3.head(params, function (err, metadata) {
       if (err)
       {
           return null;
