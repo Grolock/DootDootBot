@@ -70,12 +70,18 @@ client.on("message", async message => {
       }
       else {
         let stream = readFromS3(file)
-        stream.pipe(fs.createWriteStream(file))
-        stream.on('finish', () => {
-          if (fs.existsSync(file)) {
-             playFile(file, message)
-          }
-        })
+
+        if (stream != null) {
+          stream.pipe(fs.createWriteStream(file))
+          stream.on('finish', () => {
+            if (fs.existsSync(file)) {
+               playFile(file, message)
+            }
+          })
+        }
+        else {
+          return message.channel.send("Learn how to spell")
+        }
       }
   }
 
