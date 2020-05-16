@@ -298,6 +298,16 @@ function readFromS3(url) {
       Key: url
     }
 
+    s3.headObject(params, function (err, metadata) {
+      if (err && err.code === 'NotFound')
+      {
+          return null;
+      }
+      else {
+          return s3.getObject(params).createReadStream()
+      }
+    })
+
     return s3.getObject(params).createReadStream()
 }
 
